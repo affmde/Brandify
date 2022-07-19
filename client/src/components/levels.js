@@ -14,7 +14,12 @@ export const LevelsPage = (props) => {
     const [totalPercent, setTotalPercent] = useState(0);
     const [error, setError] = useState(false);
     const [level1, setLevel1] = useState(null);
-    const [level2, setLevel2] = useState(null);
+    const [level2, setLevel2] = useState({
+        totalLogos: 0,
+        completedLogos: 9,
+        percenCompleted: 0,
+        open: false
+    });
     const navigate= useNavigate();
 
     const chooseLevel = (i) => {
@@ -27,7 +32,7 @@ export const LevelsPage = (props) => {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem("Bearer")}` },
         }
-        const response = await fetch("/users/user", requestOptions );
+        const response = await fetch("http://localhost:3001/users/user", requestOptions );
         const data= await response.json();
         
         if(data.err){
@@ -59,6 +64,9 @@ export const LevelsPage = (props) => {
         //Level 1 data
         const level1TotalLogos= logosInfo[0][0].arrays[0].array.length + logosInfo[0][0].arrays[1].array.length + logosInfo[0][0].arrays[2].array.length;
         const level1PercentCompleted= (lvl1.length / level1TotalLogos * 100);
+        if(level1PercentCompleted>60){
+            logosInfo[1][0].open=true
+        }
         const l1brands=[];
         const l1clubs=[];
         const l1countries=[];
@@ -84,19 +92,19 @@ export const LevelsPage = (props) => {
         logosInfo[0][0].arrays[1].completedLogos=l1clubs;
         logosInfo[0][0].arrays[2].completedLogos=l1countries;
         
-        setLevel1({
+        setLevel1({...level1,
             totalLogos: level1TotalLogos,
             completedLogos: lvl1.length,
-            percenCompleted: level1PercentCompleted
+            percenCompleted: level1PercentCompleted,
         })
 
         //Level 2 data
         const level2TotalLogos= logosInfo[1][0].arrays[0].array.length + logosInfo[1][0].arrays[1].array.length + logosInfo[1][0].arrays[2].array.length;
         const level2PercentCompleted= (lvl2.length / level2TotalLogos *100);
-        setLevel2({
+        setLevel2({...level2,
             totalLogos: level2TotalLogos,
             completedLogos: lvl2.length,
-            percenCompleted: level2PercentCompleted
+            percenCompleted: level2PercentCompleted,
         })
 
         const l2brands=[];
@@ -147,14 +155,7 @@ export const LevelsPage = (props) => {
             logosInfo[i][0].percentCompleted= totalCompleted / total *100
         }
 
-        //Open next level (remember to update it when adding more levels!!!!!!!!!!)
-        if(logosInfo[0][0].percentCompleted > 60 ){
-            logosInfo[1][0].open = true
-        }
-        
-
         loadUserData();
-        console.log(logosInfo)
     },[])
 
 
@@ -173,6 +174,7 @@ export const LevelsPage = (props) => {
             }
         }
     }
+
 
     if(error){
         return(
@@ -193,7 +195,7 @@ export const LevelsPage = (props) => {
             <Row className="justify-content-center levels-div">
             {logosInfo.map((level, i)=>
                 <div className="levels-button-div" key={i}>
-                    {level[0].open && <Button onClick={()=>chooseLevel(i)} className="levels-button">
+                    {logosInfo[i][0].open && <Button onClick={()=>chooseLevel(i)} className="levels-button">
                             <div className='levels-btn-container'>
                                 <div className="levels-button-texts-div">
                                     <p className="level-btn-text">{handleButtonText(i).level}</p>
@@ -202,7 +204,7 @@ export const LevelsPage = (props) => {
                                 <p className="levels-button-p">{handleButtonText(i).percentage}%</p>
                             </div>
                         </Button>}
-                    {!level[0].open && <Image alt="locked" src="https://img.icons8.com/material-sharp/344/lock--v1.png" className="levels-lock"></Image>}
+                    {!logosInfo[i][0].open && <Image alt="locked" src="https://img.icons8.com/material-sharp/344/lock--v1.png" className="levels-lock"></Image>}
                 </div>
             )}
             </Row>

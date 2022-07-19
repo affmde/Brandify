@@ -23,7 +23,7 @@ export const HomePage= (props) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
       }
-        const response= await fetch("/users/login", requestOptions);
+        const response= await fetch("http://localhost:3001/users/login", requestOptions);
         const data= await response.json();
         
         if(data.token){
