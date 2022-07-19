@@ -145,11 +145,13 @@ export const LevelsPage = (props) => {
             const total=logosInfo[i][0].arrays[0].array.length+logosInfo[0][0].arrays[1].array.length;
             logosInfo[i][0].totalLogosCompleted=totalCompleted;
             logosInfo[i][0].percentCompleted= totalCompleted / total *100
-            
-            if(logosInfo[i][0].percentCompleted > 60){
-                logosInfo[i+1][0].open=true;
-            }
         }
+
+        //Open next level (remember to update it when adding more levels!!!!!!!!!!)
+        if(logosInfo[0][0].percentCompleted > 60 ){
+            logosInfo[1][0].open = true
+        }
+        
 
         loadUserData();
         console.log(logosInfo)
