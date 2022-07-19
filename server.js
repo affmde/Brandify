@@ -19,9 +19,13 @@ app.use(express.static(__dirname + '/client'));
 
 
 
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
-  });
+  });*/
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 
 const PORT = process.env.PORT;
