@@ -104,7 +104,7 @@ export const GameView = (props) => {
             body: JSON.stringify(body)
         }
         try{
-            await fetch("http://localhost:3001/users/coins", requestOptions);
+            await fetch("/users/coins", requestOptions);
             
         }catch(err){
             console.log(err)
@@ -127,7 +127,7 @@ export const GameView = (props) => {
             body: JSON.stringify(body)
         };
         try{
-            await fetch("http://localhost:3001/users/addLogo", requestOptions);
+            await fetch("/users/addLogo", requestOptions);
             
         }catch(err){
             console.log(err)
