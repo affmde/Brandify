@@ -1,0 +1,104 @@
+.gameView-container{
+    margin: 0 0;
+}
+
+.logo-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#game-logo{
+    width: 25vw;
+}
+.rand-letters{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.letter-box{
+    width: 8vw;
+    height: 8vw;
+    margin: 1vh 5px;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.letter-hide{
+    visibility: hidden;
+    width: 80vw !important;
+    height: 1px !important;
+}
+
+.letter-box-rand{
+    width: 8vw;
+    height: 8vw;
+    margin: 1vh 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+#correct-div{
+    display: none;
+    margin-bottom: 10vh;
+}
+
+.correct-div-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#correct-gif{
+    width: 20vw;
+    margin-bottom: 5vh;
+}
+
+#continueBtn{
+    width: 60vw;
+}
+
+
+@media only screen and (max-width: 576px){
+    #game-logo{
+        width: 50vw;
+    }
+    .letter-box{
+        width: 8vw;
+        height: 12vw;
+        margin: 1vh 5px;
+        border: 1px solid black;
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.8rem;
+    }
+    .letter-box-rand{
+        width: 12vw;
+        height: 12vw;
+        margin: 1vh 5px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 3rem;
+    }
+    .gameView-container{
+        margin: 15vh 0;
+    }
+}
+
+@media only screen and (max-width: 992px){
+    .gameView-container{
+        margin: 15vh 0;
+    }
+    
+}
+
+
+
+

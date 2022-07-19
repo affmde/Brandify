@@ -1,0 +1,31 @@
+.categories-div{
+    margin: 10vh 0;
+}
+
+.category-to-choose{
+    width: 100%;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.categories-titles{
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 200;
+    width: 100%;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);;
+}
+
+.categories-completed-text{
+    text-align: center;
+}
+
+@media only screen and (max-width: 992px){
+    .categories-titles{
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 200;
+        width: 100%;
+        text-shadow: 2px 4px 3px rgba(0,0,0,0.3);;
+    }
+}

@@ -1,0 +1,22 @@
+.error-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-container p{
+    font-size: 2rem;
+    margin: 20vh 0;
+}
+
+.error-container button{
+    padding: 20px 60px;
+}
+.error-container button:hover{
+    transform: scale(1.05);
+    background-color: blue;
+}
+
+.loading-spin{
+    margin: 25vh 0;
+}

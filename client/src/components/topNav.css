@@ -1,0 +1,34 @@
+.topNav-div{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.return-button{
+    width: 50px;
+    cursor: pointer;
+}
+
+.topNav-text{
+    font-size: 2rem;
+    color: white;
+}
+
+.topNav-coin{
+    height: 50px;
+}
+
+
+@media only screen and (max-width: 576px){
+    .topNav-text{
+        font-size: 1.5rem;
+    }
+    .topNav-coin{
+        height: 30px;
+    }
+    .return-button{
+        width: 30px;
+    }
+}

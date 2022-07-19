@@ -1,0 +1,43 @@
+.logos-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-to-choose{
+    width: 16.6vw;
+    cursor: pointer;
+}
+
+.logo-area{
+    position:relative
+}
+
+.logo-completed{
+    width: 25%;
+    position: absolute;
+    left:50%;
+    bottom: 25%;
+}
+
+@media only screen and (max-width: 576px){
+    .logo-to-choose{
+        width: 30vw;
+    }
+    .logo-area{
+        position:relative;
+        margin-bottom: 5vh;
+    }
+    .logos-div{
+        margin: 10vh 0;
+    }
+}
+
+@media only screen and (max-width: 992px){
+    .logos-div{
+        margin: 10vh 0;
+    }
+}
+
