@@ -40,7 +40,7 @@ const brandsLogos= [
     },
     {
         id: 6,
-        name: "jpmorgan",
+        name: "jp_morgan",
         logoUrl: jpMorgan,
         completed: false
     },

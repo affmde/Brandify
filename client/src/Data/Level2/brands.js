@@ -4,7 +4,9 @@ import honda from "../../media/images/honda.png"
 import gucci from "../../media/images/gucci.png";
 import nescafe from "../../media/images/nescafe.png";
 import google from "../../media/images/google.png";
-import amazon from "../../media/images/amazon.png"
+import amazon from "../../media/images/amazon.png";
+import louisVuitton from "../../media/images/louisVuitton.png"
+import ge from "../../media/images/ge.png"
 
 const brandsLogos= [
     {
@@ -28,13 +30,13 @@ const brandsLogos= [
     {
         id: 3,
         name: "louis_Vuitton",
-        logoUrl: "https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/louis-vuitton-logo.png",
+        logoUrl: louisVuitton,
         completed: false
     },
     {
         id: 4,
         name: "ge",
-        logoUrl: "https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/ge-logo.png",
+        logoUrl: ge,
         completed: false
     },
     {
