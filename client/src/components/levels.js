@@ -27,7 +27,7 @@ export const LevelsPage = (props) => {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem("Bearer")}` },
         }
-        const response = await fetch("https://brandify-affm.herokuapp.com/users/user", requestOptions );
+        const response = await fetch("/users/user", requestOptions );
         const data= await response.json();
         
         if(data.err){
