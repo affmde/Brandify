@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, ()=>{
 app.use(cors());
 app.use(express.json());
 app.use('/users', usersRouter);
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 
 
@@ -24,9 +24,9 @@ app.use(express.static(__dirname + '/client'));
     res.sendFile(__dirname + '/index.html');
   });*/
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+  app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  });
 
 
 const PORT = process.env.PORT;
