@@ -21,7 +21,7 @@ export const RegisterPage = (props) => {
     }
 
     try{
-      const response= await fetch("http://localhost:3001/users/createUser", requestOptions)
+      const response= await fetch("/users/createUser", requestOptions)
       const data= await response.json();
       if(data){
         setUsername("");
