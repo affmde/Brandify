@@ -1,8 +1,8 @@
 import "./helpsModal.css";
-import { Container, Modal, Button, Image } from "react-bootstrap"
+import { Container, Button, Image } from "react-bootstrap"
 
 export const HelspsModal = (props) => {
-    
+  
     const spendCoins = async (c) =>{
         const body={
             coins: c
@@ -23,24 +23,15 @@ export const HelspsModal = (props) => {
         document.getElementById('showName').style.display= 'block';
         document.getElementById('show-word-btn').style.display= "none";
         document.getElementById('helps-title').style.display= "none";
+        document.getElementById("no-help").style.display= "none";
+        document.getElementById("understood").style.display= "block"
         spendCoins(c)
-        props.setCoins(props.coins + c);
+        props.setCoins(props.coins+c)
     }
     return(
         <Container>
-            <Modal
-                {...props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                    
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="helps-div">
+                
+                <div className="helps-div">
                    <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
                     <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(-400)} id="show-word-btn">
                         <div className="helps-button-div">
@@ -52,10 +43,10 @@ export const HelspsModal = (props) => {
                         </div>
                     </Button> 
                     <p id="showName">{props.name} </p>
+                    <Button variant="danger" onClick={()=>props.onHide()} id="no-help">I don´t need help</Button>
+                    <Button variant="success" onClick={()=>props.onHide()} id="understood">I got it!</Button>
                     </div>
-                </Modal.Body>
                 
-            </Modal>
         </Container>
     )
 }

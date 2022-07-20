@@ -96,6 +96,7 @@ export const GameView = (props) => {
     }, [])
 
 
+
     const coinsReward = async () =>{
         const body={
             coins: 15
@@ -147,31 +148,32 @@ export const GameView = (props) => {
                 </Col>
                 
             
-            <div className='logo-name' id="logoName">
+            {!showHelp && <div className='logo-name' id="logoName">
                 {answer.map(( letter, i)=>{
                     return <div key={i} onClick={(e)=>removeLetter(e, i)}><div className={`letter-box ${letter.letter==="_" && "letter-hide"}`} id={i}></div></div>
                 })}
-            </div>
-            <div className="rand-letters" id="randLetters">
+            </div>}
+            {!showHelp && <div className="rand-letters" id="randLetters">
                 {randomLetters.map((letter, i)=>{
                     return <p onClick={(e)=>addToResponse(e, i)} key={i} className="letter-box-rand" id={`letter-${i}`}>{letter.toUpperCase()}</p>
                 })}
-            </div>
-            <div id="correct-div">
+            </div>}
+            {!showHelp && <div id="correct-div">
                 <div className="correct-div-flex">
                     <img alt="correct" src={correctGif} id="correct-gif"></img>
                     <Button onClick={()=>continueFunction(15)} id="continueBtn">Continue</Button>
                 </div>
-            </div>
-            </Row>
-        </Container>
-        <HelspsModal 
+            </div>}
+
+            {showHelp && <HelspsModal 
             show={showHelp}
             onHide={() => setShowHelp(false)}
             name={logo.name}
             setCoins={props.setCoins}
             coins={props.coins}
-        />
+            />}
+            </Row>
+        </Container>
         </>
     )
 }
