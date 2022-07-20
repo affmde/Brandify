@@ -59,7 +59,7 @@ const countriesLogos= [
 export const countries= {
     id: 0,
     array: countriesLogos,
-    logo: "https://img.freepik.com/premium-vector/countries-flags-major-world-advanced-emerging-economies-states-official-group-twenty-flag-labels-set_102902-1882.jpg?w=2000",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOGUgxKtfWtp-uq0KLY5DseyCARB4ww-mzlw&usqp=CAU",
     title: "Countries",
     completedLogos: [],
     completed: false

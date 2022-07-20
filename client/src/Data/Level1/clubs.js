@@ -2,7 +2,7 @@ import benfica from "../../media/images/benfica.png";
 import ajax from "../../media/images/ajax.png";
 import napoli from "../../media/images/napoli.png";
 import chelsea from "../../media/images/chelsea.png";
-import clubsLogo from "../../media/images/club-symbols.jpg";
+import clubsLogo from "../../media/images/club-symbols.png";
 import arsenal from "../../media/images/arsenal.png";
 import liverpool from "../../media/images/liverpool.png";
 

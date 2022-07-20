@@ -1,6 +1,6 @@
 import tottenham from "../../media/images/tottenham.png";
 import leverkusen from "../../media/images/leverkusen.png";
-import clubsLogo from "../../media/images/club-symbols.jpg";
+import clubsLogo from "../../media/images/club-symbols.png";
 import chicagoBulls from '../../media/images/chicagoBulls.png';
 import milan from '../../media/images/milan.png';
 import paris from '../../media/images/paris.png';

@@ -16,7 +16,19 @@ export const LevelsPage = (props) => {
     const [level1, setLevel1] = useState(null);
     const [level2, setLevel2] = useState({
         totalLogos: 0,
-        completedLogos: 9,
+        completedLogos: 0,
+        percenCompleted: 0,
+        open: false
+    });
+    const [level3, setLevel3] = useState({
+        totalLogos: 0,
+        completedLogos: 0,
+        percenCompleted: 0,
+        open: false
+    });
+    const [level4, setLevel4] = useState({
+        totalLogos: 0,
+        completedLogos: 0,
         percenCompleted: 0,
         open: false
     });
@@ -48,16 +60,19 @@ export const LevelsPage = (props) => {
         }
 
         //set all completed logos by level
-        const lvl1=[]
-        const lvl2= []
-        const lvl3= []
+        const lvl1=[];
+        const lvl2= [];
+        const lvl3= [];
+        const lvl4= [];
         data.completedLogos.forEach((obj, i)=>{
             if(obj.path.level===0){
                 lvl1.push(obj)
             }else if(obj.path.level===1){
                 lvl2.push(obj)
-            }else if(obj.path.levle===3){
+            }else if(obj.path.level===2){
                 lvl3.push(obj)
+            }else if(obj.path.level===3){
+                lvl4.push(obj)
             }
         })
         
@@ -132,9 +147,85 @@ export const LevelsPage = (props) => {
         logosInfo[1][0].arrays[1].completedLogos=l2clubs;
         logosInfo[1][0].arrays[2].completedLogos=l2countries;
 
+        
+        // set level 3 data
+        const level3TotalLogos= logosInfo[2][0].arrays[0].array.length + logosInfo[2][0].arrays[1].array.length + logosInfo[2][0].arrays[2].array.length;
+        const level3PercentCompleted= (lvl3.length / level3TotalLogos * 100);
+        if(level2PercentCompleted>60){
+            logosInfo[2][0].open=true
+        }
+        const l3brands=[];
+        const l3clubs=[];
+        const l3countries=[];
+        lvl3.forEach(logo=>{
+            if(logo.path.category===0){
+                l3brands.push(logo);
+            }else if(logo.path.category===1){
+                l3clubs.push(logo);
+            }else if(logo.path.category===2){
+                l3countries.push(logo)
+            }
+        })
+        if(l3brands.length >= logosInfo[2][0].arrays[0].array.length){
+            logosInfo[2][0].arrays[0].completed= true;
+        }
+        if(l3clubs.length >= logosInfo[2][0].arrays[1].array.length){
+            logosInfo[2][0].arrays[1].completed= true;
+        }
+        if(l3countries.length >= logosInfo[2][0].arrays[2].array.length){
+            logosInfo[2][0].arrays[2].completed= true;
+        }
+        logosInfo[2][0].arrays[0].completedLogos=l3brands;
+        logosInfo[2][0].arrays[1].completedLogos=l3clubs;
+        logosInfo[2][0].arrays[2].completedLogos=l3countries;
+        
+        setLevel3({...level3,
+            totalLogos: level3TotalLogos,
+            completedLogos: lvl3.length,
+            percenCompleted: level3PercentCompleted,
+        })
+
+
+        //set level 4 data
+        const level4TotalLogos= logosInfo[3][0].arrays[0].array.length + logosInfo[3][0].arrays[1].array.length + logosInfo[3][0].arrays[2].array.length;
+        const level4PercentCompleted= (lvl4.length / level4TotalLogos * 100);
+        if(level3PercentCompleted>60){
+            logosInfo[3][0].open=true
+        }
+        const l4brands=[];
+        const l4clubs=[];
+        const l4countries=[];
+        lvl4.forEach(logo=>{
+            if(logo.path.category===0){
+                l4brands.push(logo);
+            }else if(logo.path.category===1){
+                l4clubs.push(logo);
+            }else if(logo.path.category===2){
+                l4countries.push(logo)
+            }
+        })
+        if(l4brands.length >= logosInfo[3][0].arrays[0].array.length){
+            logosInfo[3][0].arrays[0].completed= true;
+        }
+        if(l4clubs.length >= logosInfo[3][0].arrays[1].array.length){
+            logosInfo[3][0].arrays[1].completed= true;
+        }
+        if(l4countries.length >= logosInfo[3][0].arrays[2].array.length){
+            logosInfo[3][0].arrays[2].completed= true;
+        }
+        logosInfo[3][0].arrays[0].completedLogos=l4brands;
+        logosInfo[3][0].arrays[1].completedLogos=l4clubs;
+        logosInfo[3][0].arrays[2].completedLogos=l4countries;
+        
+        setLevel4({...level4,
+            totalLogos: level4TotalLogos,
+            completedLogos: lvl4.length,
+            percenCompleted: level4PercentCompleted,
+        })
+
         //Total data stats
-        setTotalCompleted(lvl1.length + lvl2.length);
-        setTotalLogos( level1TotalLogos + level2TotalLogos);
+        setTotalCompleted(lvl1.length + lvl2.length + lvl3.length + lvl4.length);
+        setTotalLogos( level1TotalLogos + level2TotalLogos + level3TotalLogos + level4TotalLogos);
         setTotalPercent(totalCompleted / totalLogos * 100);
 
     }
@@ -146,15 +237,6 @@ export const LevelsPage = (props) => {
     }
 
     useEffect(()=>{
-
-        //set next level open if current level achieves at least 60%
-        for(let i= 0; i<logosInfo.length; i++){
-            const totalCompleted= logosInfo[i][0].arrays[0].completedLogos.length+logosInfo[0][0].arrays[1].completedLogos.length;
-            const total=logosInfo[i][0].arrays[0].array.length+logosInfo[0][0].arrays[1].array.length;
-            logosInfo[i][0].totalLogosCompleted=totalCompleted;
-            logosInfo[i][0].percentCompleted= totalCompleted / total *100
-        }
-
         loadUserData();
     },[])
 
@@ -171,6 +253,18 @@ export const LevelsPage = (props) => {
                 level: "Level 2",
                 completed: level2.completedLogos,
                 percentage: level2.percenCompleted.toFixed(0)
+            }
+        }else if(index===2){
+            return{
+                level: "Level 3",
+                completed: level3.completedLogos,
+                percentage: level3.percenCompleted.toFixed(0)
+            }
+        }else if(index===3){
+            return{
+                level: "Level 4",
+                completed: level4.completedLogos,
+                percentage: level4.percenCompleted.toFixed(0)
             }
         }
     }
