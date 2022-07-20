@@ -32,6 +32,12 @@ export const LevelsPage = (props) => {
         percenCompleted: 0,
         open: false
     });
+    const [level5, setLevel5] = useState({
+        totalLogos: 0,
+        completedLogos: 0,
+        percenCompleted: 0,
+        open: false
+    });
     const navigate= useNavigate();
 
     const chooseLevel = (i) => {
@@ -64,6 +70,7 @@ export const LevelsPage = (props) => {
         const lvl2= [];
         const lvl3= [];
         const lvl4= [];
+        const lvl5=[];
         data.completedLogos.forEach((obj, i)=>{
             if(obj.path.level===0){
                 lvl1.push(obj)
@@ -73,6 +80,8 @@ export const LevelsPage = (props) => {
                 lvl3.push(obj)
             }else if(obj.path.level===3){
                 lvl4.push(obj)
+            }else if(obj.path.level===4){
+                lvl5.push(obj)
             }
         })
         
@@ -223,6 +232,43 @@ export const LevelsPage = (props) => {
             percenCompleted: level4PercentCompleted,
         })
 
+        //Set level 5 data
+        const level5TotalLogos= logosInfo[4][0].arrays[0].array.length + logosInfo[4][0].arrays[1].array.length + logosInfo[4][0].arrays[2].array.length;
+        const level5PercentCompleted= (lvl5.length / level5TotalLogos * 100);
+        if(level4PercentCompleted>60){
+            logosInfo[4][0].open=true
+        }
+        const l5brands=[];
+        const l5clubs=[];
+        const l5countries=[];
+        lvl5.forEach(logo=>{
+            if(logo.path.category===0){
+                l5brands.push(logo);
+            }else if(logo.path.category===1){
+                l5clubs.push(logo);
+            }else if(logo.path.category===2){
+                l5countries.push(logo)
+            }
+        })
+        if(l5brands.length >= logosInfo[4][0].arrays[0].array.length){
+            logosInfo[4][0].arrays[0].completed= true;
+        }
+        if(l5clubs.length >= logosInfo[4][0].arrays[1].array.length){
+            logosInfo[4][0].arrays[1].completed= true;
+        }
+        if(l5countries.length >= logosInfo[4][0].arrays[2].array.length){
+            logosInfo[4][0].arrays[2].completed= true;
+        }
+        logosInfo[4][0].arrays[0].completedLogos=l5brands;
+        logosInfo[4][0].arrays[1].completedLogos=l5clubs;
+        logosInfo[4][0].arrays[2].completedLogos=l5countries;
+        
+        setLevel5({...level5,
+            totalLogos: level5TotalLogos,
+            completedLogos: lvl5.length,
+            percenCompleted: level5PercentCompleted,
+        })
+
         //Total data stats
         setTotalCompleted(lvl1.length + lvl2.length + lvl3.length + lvl4.length);
         setTotalLogos( level1TotalLogos + level2TotalLogos + level3TotalLogos + level4TotalLogos);
@@ -265,6 +311,12 @@ export const LevelsPage = (props) => {
                 level: "Level 4",
                 completed: level4.completedLogos,
                 percentage: level4.percenCompleted.toFixed(0)
+            }
+        }else if(index===4){
+            return{
+                level: "Level 5",
+                completed: level5.completedLogos,
+                percentage: level5.percenCompleted.toFixed(0)
             }
         }
     }
