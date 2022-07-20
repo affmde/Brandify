@@ -18,7 +18,7 @@ const clubsLogos=[
     },
     {
         id: 1,
-        name: "man_united",
+        name: "manchester_united",
         logoUrl: manUnited,
         completed: false
     },

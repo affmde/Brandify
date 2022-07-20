@@ -38,6 +38,12 @@ export const LevelsPage = (props) => {
         percenCompleted: 0,
         open: false
     });
+    const [level6, setLevel6] = useState({
+        totalLogos: 0,
+        completedLogos: 0,
+        percenCompleted: 0,
+        open: false
+    });
     const navigate= useNavigate();
 
     const chooseLevel = (i) => {
@@ -71,6 +77,7 @@ export const LevelsPage = (props) => {
         const lvl3= [];
         const lvl4= [];
         const lvl5=[];
+        const lvl6=[];
         data.completedLogos.forEach((obj, i)=>{
             if(obj.path.level===0){
                 lvl1.push(obj)
@@ -82,6 +89,8 @@ export const LevelsPage = (props) => {
                 lvl4.push(obj)
             }else if(obj.path.level===4){
                 lvl5.push(obj)
+            }else if(obj.path.level===5){
+                lvl6.push(obj)
             }
         })
         
@@ -269,9 +278,46 @@ export const LevelsPage = (props) => {
             percenCompleted: level5PercentCompleted,
         })
 
+        //set level 6 data
+        const level6TotalLogos= logosInfo[5][0].arrays[0].array.length + logosInfo[5][0].arrays[1].array.length + logosInfo[5][0].arrays[2].array.length;
+        const level6PercentCompleted= (lvl6.length / level6TotalLogos * 100);
+        if(level5PercentCompleted>60){
+            logosInfo[5][0].open=true
+        }
+        const l6brands=[];
+        const l6clubs=[];
+        const l6countries=[];
+        lvl6.forEach(logo=>{
+            if(logo.path.category===0){
+                l6brands.push(logo);
+            }else if(logo.path.category===1){
+                l6clubs.push(logo);
+            }else if(logo.path.category===2){
+                l6countries.push(logo)
+            }
+        })
+        if(l6brands.length >= logosInfo[5][0].arrays[0].array.length){
+            logosInfo[5][0].arrays[0].completed= true;
+        }
+        if(l6clubs.length >= logosInfo[5][0].arrays[1].array.length){
+            logosInfo[5][0].arrays[1].completed= true;
+        }
+        if(l6countries.length >= logosInfo[5][0].arrays[2].array.length){
+            logosInfo[5][0].arrays[2].completed= true;
+        }
+        logosInfo[5][0].arrays[0].completedLogos=l6brands;
+        logosInfo[5][0].arrays[1].completedLogos=l6clubs;
+        logosInfo[5][0].arrays[2].completedLogos=l6countries;
+        
+        setLevel6({...level6,
+            totalLogos: level6TotalLogos,
+            completedLogos: lvl6.length,
+            percenCompleted: level6PercentCompleted,
+        })
+
         //Total data stats
-        setTotalCompleted(lvl1.length + lvl2.length + lvl3.length + lvl4.length);
-        setTotalLogos( level1TotalLogos + level2TotalLogos + level3TotalLogos + level4TotalLogos);
+        setTotalCompleted(lvl1.length + lvl2.length + lvl3.length + lvl4.length+lvl5.length+lvl6.length);
+        setTotalLogos( level1TotalLogos + level2TotalLogos + level3TotalLogos + level4TotalLogos+level5TotalLogos+level6TotalLogos);
         setTotalPercent(totalCompleted / totalLogos * 100);
 
     }
@@ -317,6 +363,12 @@ export const LevelsPage = (props) => {
                 level: "Level 5",
                 completed: level5.completedLogos,
                 percentage: level5.percenCompleted.toFixed(0)
+            }
+        }else if(index===5){
+            return{
+                level: "Level 6",
+                completed: level6.completedLogos,
+                percentage: level6.percenCompleted.toFixed(0)
             }
         }
     }
