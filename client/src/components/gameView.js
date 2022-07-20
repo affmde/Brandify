@@ -169,6 +169,8 @@ export const GameView = (props) => {
             show={showHelp}
             onHide={() => setShowHelp(false)}
             name={logo.name}
+            setCoins={props.setCoins}
+            coins={props.coins}
         />
         </>
     )

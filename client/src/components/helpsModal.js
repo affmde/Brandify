@@ -21,7 +21,10 @@ export const HelspsModal = (props) => {
     }
     const showName = (c) => {
         document.getElementById('showName').style.display= 'block';
+        document.getElementById('show-word-btn').style.display= "none";
+        document.getElementById('helps-title').style.display= "none";
         spendCoins(c)
+        props.setCoins(props.coins + c);
     }
     return(
         <Container>
@@ -38,8 +41,8 @@ export const HelspsModal = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="helps-div">
-                   <p style={{fontSize: '2rem'}}>Do you need help?</p>
-                    <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(-400)} >
+                   <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
+                    <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(-400)} id="show-word-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show word</p>
                             <div className="helps-btn-costDiv">
