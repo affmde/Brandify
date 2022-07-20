@@ -83,6 +83,8 @@ usersRouter.get("/user", async (req, res)=> {
 //Save Coins
 usersRouter.post("/coins", async (req, res)=> {
     const headers= req.headers;
+    const body= req.body
+    console.log(body)
     let tk;
     if (headers.authorization.startsWith("Bearer ")){
         tk= headers.authorization.substring(7, headers.authorization.length);
@@ -99,7 +101,7 @@ usersRouter.post("/coins", async (req, res)=> {
     });
     try{
         if(id){
-            const user = await Users.findByIdAndUpdate(id, {$inc: {coins: 15}})
+            const user = await Users.findByIdAndUpdate(id, {$inc: {coins: body.coins}})
             res.status(200).json({message: "Updated successfuly!"})
         }
     }catch(err){

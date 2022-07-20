@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { TopNav } from "./topNav";
 import correctGif from '../media/images/correctGif.gif';
 import {CountUp} from "use-count-up"
+import { HelspsModal } from "./helpsModal";
 
 export const GameView = (props) => {
     const navigate= useNavigate();
@@ -14,6 +15,7 @@ export const GameView = (props) => {
     const category= props.category;
     const [randomLetters, setRandomLetters] = useState([]);
     const [updateCoins, setUpdateCoins] = useState(false);
+    const [showHelp, setShowHelp] = useState(false);
     let answer=[];
     let stringAnswer = "";
     
@@ -137,6 +139,7 @@ export const GameView = (props) => {
     return(
         <>
         <TopNav title={`Level ${level +1}`} page="logos" coins={<CountUp isCounting={updateCoins ? true : false} start={props.coins} end={props.coins+15} />}></TopNav>
+        <Image alt="help" src="https://img.icons8.com/dotty/2x/help.png" id="help-button" onClick={() => setShowHelp(true)}></Image>
         <Container>
             <Row className="justify-content-center gameView-container">
                 <Col xs="auto">
@@ -162,6 +165,11 @@ export const GameView = (props) => {
             </div>
             </Row>
         </Container>
+        <HelspsModal 
+            show={showHelp}
+            onHide={() => setShowHelp(false)}
+            name={logo.name}
+        />
         </>
     )
 }

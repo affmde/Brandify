@@ -1,0 +1,40 @@
+.helps-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.helps-button-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.helps-btn-costDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid orange;
+    border-radius: 15px;
+    background-color: rgba(223, 201, 76, 0.533);
+    color: white;
+    padding: 1vh 3vw;
+}
+
+.help-coin{
+    width: 50px;
+}
+
+.help-description{
+    font-size: 1.5rem;
+    text-align: start;
+}
+.help-cost{
+    font-size: 1.5rem;
+}
+
+#showName{
+    font-size: 2rem;
+    display: none;
+}
