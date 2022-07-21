@@ -20,13 +20,22 @@ export const HelspsModal = (props) => {
         }
     }
     const showName = (c) => {
-        document.getElementById('showName').style.display= 'block';
-        document.getElementById('show-word-btn').style.display= "none";
-        document.getElementById('helps-title').style.display= "none";
-        document.getElementById("no-help").style.display= "none";
-        document.getElementById("understood").style.display= "block"
-        spendCoins(c)
-        props.setCoins(props.coins+c)
+        
+        if(props.coins > 400){
+            document.getElementById('showName').style.display= 'block';
+            document.getElementById('show-word-btn').style.display= "none";
+            document.getElementById('helps-title').style.display= "none";
+            document.getElementById("no-help").style.display= "none";
+            document.getElementById("understood").style.display= "block"
+            spendCoins(c)
+            props.setCoins(props.coins+c)
+        }else{
+            document.getElementById('noMoney').style.display= 'block';
+            setTimeout(()=>{
+                document.getElementById('noMoney').style.display= 'none';
+            }, 3000)
+        }
+        
     }
     return(
         <Container>
@@ -43,6 +52,7 @@ export const HelspsModal = (props) => {
                         </div>
                     </Button> 
                     <p id="showName">{props.name} </p>
+                    <p id="noMoney">You have not enough coins</p>
                     <Button variant="danger" onClick={()=>props.onHide()} id="no-help">I don´t need help</Button>
                     <Button variant="success" onClick={()=>props.onHide()} id="understood">I got it!</Button>
                     </div>
