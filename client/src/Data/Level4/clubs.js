@@ -42,7 +42,7 @@ const clubsLogos=[
     },
     {
         id: 5,
-        name: "interMilan",
+        name: "inter_milan",
         logoUrl: interMilan,
         completed: false
     },

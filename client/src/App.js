@@ -7,6 +7,7 @@ import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import { LevelsPage } from "./components/levels";
 import { LogosPage } from "./components/logosPage";
 import {HomePage} from "./components/homepage";
+import {MessageToast} from './components/messageToast';
 
 function App() {
   const [level, setLevel] = useState(0);
@@ -14,6 +15,10 @@ function App() {
   const [logo, setLogo] = useState(null);
   const [coins, setCoins] = useState(0);
   const [logged, setLogged] = useState(false);
+  const [showToast, setShowToast] = useState({
+    state: false,
+    message: ""
+  });
 
   return (
     <div className="App">
@@ -23,7 +28,7 @@ function App() {
           {logged && <Route path="/levels" element={<LevelsPage level={level} setLevel={setLevel} category={category} coins={coins} setCoins={setCoins} setLogged={setLogged}/>}></Route>}
           {logged && <Route path="/categories" element={<CategoriesPage level={level} setCategory={setCategory} category={category} coins={coins}/>}></Route>}
           {logged && <Route path="/logos" element={<LogosPage level={level} category={category} logo={logo} setLogo={setLogo} coins={coins}/>}></Route> }
-          {logged && <Route path="/game" element={<GameView level={level} category={category} logo={logo} coins={coins} setCoins={setCoins}/>}></Route>}
+          {logged && <Route path="/game" element={<GameView level={level} category={category} logo={logo} coins={coins} setCoins={setCoins} setLogged={setLogged} setShowToast={setShowToast} />}></Route>}
           <Route
             path="*"
             element={<Navigate to="/" replace />}
@@ -31,6 +36,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+      {showToast.state && <MessageToast message={showToast.message}/>}
     </div>
   );
 }

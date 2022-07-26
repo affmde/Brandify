@@ -7,6 +7,7 @@ import { TopNav } from "./topNav";
 import correctGif from '../media/images/correctGif.gif';
 import {CountUp} from "use-count-up"
 import { HelspsModal } from "./helpsModal";
+import { ErrorComponent } from "./handlingComponents/Error/errorComponent";
 
 export const GameView = (props) => {
     const navigate= useNavigate();
@@ -130,7 +131,23 @@ export const GameView = (props) => {
             body: JSON.stringify(body)
         };
         try{
-            await fetch("/users/addLogo", requestOptions);
+            const response= await fetch("/users/addLogo", requestOptions);
+            const data= await response.json();
+            if(data.success===false){
+                props.setLogged(false)
+                props.setShowToast({
+                    state: true,
+                    message: data.message
+                })
+                
+                setTimeout(()=>{
+                    props.setShowToast({
+                        state: false,
+                        message: ""
+                    })
+                }, 2000)
+            }
+            
             
         }catch(err){
             console.log(err)

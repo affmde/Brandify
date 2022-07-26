@@ -7,6 +7,11 @@ export const RegisterPage = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registered, setRegistered] = useState(false);
+
+  const handleRgisterContinue = () => {
+    setRegistered(false);
+    props.onHide();
+  }
  
   const handleRegister = async() => {
     const body={
@@ -23,11 +28,15 @@ export const RegisterPage = (props) => {
     try{
       const response= await fetch("/users/createUser", requestOptions)
       const data= await response.json();
-      if(data){
+      console.log("data", data)
+      if(data.success){
         setUsername("");
         setEmail("");
         setPassword("");
         setRegistered(true);
+      }else{
+        document.getElementById("register-error-p").style.display= 'block';
+        document.getElementById("register-error-p").innerHTML= data.message
       }
     }catch(err){
       console.log(err);
@@ -49,6 +58,7 @@ export const RegisterPage = (props) => {
       </Modal.Header>
       {!registered && <Modal.Body>
         <Form>
+            <p id="register-error-p"></p>
             <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter your username" className="mb-3" onChange={e=>setUsername(e.target.value )} value={username}/>
@@ -67,7 +77,7 @@ export const RegisterPage = (props) => {
       <Modal.Body>
         <div className="registered-div">
           <h3>Registered successfully!</h3>
-          <Button onClick={()=>props.onHide()}>Continue</Button>  
+          <Button onClick={()=>handleRgisterContinue()}>Continue</Button>  
         </div>  
       </Modal.Body>}
       {!registered &&<Modal.Footer>

@@ -12,7 +12,10 @@ export const LevelsPage = (props) => {
     const [totalLogos, setTotalLogos] = useState(0);
     const [totalCompleted, setTotalCompleted] = useState(0);
     const [totalPercent, setTotalPercent] = useState(0);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({
+        state: false,
+        message: ""
+    });
     const [level1, setLevel1] = useState(null);
     const [level2, setLevel2] = useState({
         totalLogos: 0,
@@ -58,10 +61,10 @@ export const LevelsPage = (props) => {
         }
         const response = await fetch("/users/user", requestOptions );
         const data= await response.json();
-        
+        console.log(data)
         if(data.err){
-            console.log('error ')
-            setError(true);
+            return setError({...error, state: true, message: data.message});
+            
         }
         props.setCoins(data.coins);
 
@@ -103,27 +106,7 @@ export const LevelsPage = (props) => {
         const l1brands=[];
         const l1clubs=[];
         const l1countries=[];
-        lvl1.forEach(logo=>{
-            if(logo.path.category===0){
-                l1brands.push(logo);
-            }else if(logo.path.category===1){
-                l1clubs.push(logo);
-            }else if(logo.path.category===2){
-                l1countries.push(logo)
-            }
-        })
-        if(l1brands.length >= logosInfo[0][0].arrays[0].array.length){
-            logosInfo[0][0].arrays[0].completed= true;
-        }
-        if(l1clubs.length >= logosInfo[0][0].arrays[1].array.length){
-            logosInfo[0][0].arrays[1].completed= true;
-        }
-        if(l1countries.length >= logosInfo[0][0].arrays[2].array.length){
-            logosInfo[0][0].arrays[2].completed= true;
-        }
-        logosInfo[0][0].arrays[0].completedLogos=l1brands;
-        logosInfo[0][0].arrays[1].completedLogos=l1clubs;
-        logosInfo[0][0].arrays[2].completedLogos=l1countries;
+        setLevelData(lvl1,l1brands, l1clubs, l1countries, 0);
         
         setLevel1({...level1,
             totalLogos: level1TotalLogos,
@@ -134,37 +117,16 @@ export const LevelsPage = (props) => {
         //Level 2 data
         const level2TotalLogos= logosInfo[1][0].arrays[0].array.length + logosInfo[1][0].arrays[1].array.length + logosInfo[1][0].arrays[2].array.length;
         const level2PercentCompleted= (lvl2.length / level2TotalLogos *100);
+
+        const l2brands=[];
+        const l2clubs=[];
+        const l2countries=[];
+        setLevelData(lvl2,l2brands, l2clubs, l2countries, 1);
         setLevel2({...level2,
             totalLogos: level2TotalLogos,
             completedLogos: lvl2.length,
             percenCompleted: level2PercentCompleted,
         })
-
-        const l2brands=[];
-        const l2clubs=[];
-        const l2countries=[];
-        lvl2.forEach(logo=>{
-            if(logo.path.category===0){
-                l2brands.push(logo);
-            }else if(logo.path.category===1){
-                l2clubs.push(logo);
-            }else if(logo.path.category===2){
-                l2countries.push(logo);
-            }
-        })
-        if(l2brands.length >= logosInfo[1][0].arrays[0].array.length){
-            logosInfo[1][0].arrays[0].completed= true;
-        }
-        if(l2clubs.length >= logosInfo[1][0].arrays[1].array.length){
-            logosInfo[1][0].arrays[1].completed= true;
-        }
-        if(l2countries.length >= logosInfo[1][0].arrays[2].array.length){
-            logosInfo[1][0].arrays[1].completed= true;
-        }
-        logosInfo[1][0].arrays[0].completedLogos=l2brands;
-        logosInfo[1][0].arrays[1].completedLogos=l2clubs;
-        logosInfo[1][0].arrays[2].completedLogos=l2countries;
-
         
         // set level 3 data
         const level3TotalLogos= logosInfo[2][0].arrays[0].array.length + logosInfo[2][0].arrays[1].array.length + logosInfo[2][0].arrays[2].array.length;
@@ -175,27 +137,7 @@ export const LevelsPage = (props) => {
         const l3brands=[];
         const l3clubs=[];
         const l3countries=[];
-        lvl3.forEach(logo=>{
-            if(logo.path.category===0){
-                l3brands.push(logo);
-            }else if(logo.path.category===1){
-                l3clubs.push(logo);
-            }else if(logo.path.category===2){
-                l3countries.push(logo)
-            }
-        })
-        if(l3brands.length >= logosInfo[2][0].arrays[0].array.length){
-            logosInfo[2][0].arrays[0].completed= true;
-        }
-        if(l3clubs.length >= logosInfo[2][0].arrays[1].array.length){
-            logosInfo[2][0].arrays[1].completed= true;
-        }
-        if(l3countries.length >= logosInfo[2][0].arrays[2].array.length){
-            logosInfo[2][0].arrays[2].completed= true;
-        }
-        logosInfo[2][0].arrays[0].completedLogos=l3brands;
-        logosInfo[2][0].arrays[1].completedLogos=l3clubs;
-        logosInfo[2][0].arrays[2].completedLogos=l3countries;
+        setLevelData(lvl3,l3brands, l3clubs, l3countries, 2);
         
         setLevel3({...level3,
             totalLogos: level3TotalLogos,
@@ -213,28 +155,9 @@ export const LevelsPage = (props) => {
         const l4brands=[];
         const l4clubs=[];
         const l4countries=[];
-        lvl4.forEach(logo=>{
-            if(logo.path.category===0){
-                l4brands.push(logo);
-            }else if(logo.path.category===1){
-                l4clubs.push(logo);
-            }else if(logo.path.category===2){
-                l4countries.push(logo)
-            }
-        })
-        if(l4brands.length >= logosInfo[3][0].arrays[0].array.length){
-            logosInfo[3][0].arrays[0].completed= true;
-        }
-        if(l4clubs.length >= logosInfo[3][0].arrays[1].array.length){
-            logosInfo[3][0].arrays[1].completed= true;
-        }
-        if(l4countries.length >= logosInfo[3][0].arrays[2].array.length){
-            logosInfo[3][0].arrays[2].completed= true;
-        }
-        logosInfo[3][0].arrays[0].completedLogos=l4brands;
-        logosInfo[3][0].arrays[1].completedLogos=l4clubs;
-        logosInfo[3][0].arrays[2].completedLogos=l4countries;
-        
+
+        setLevelData(lvl4,l4brands, l4clubs, l4countries, 3);
+
         setLevel4({...level4,
             totalLogos: level4TotalLogos,
             completedLogos: lvl4.length,
@@ -250,28 +173,9 @@ export const LevelsPage = (props) => {
         const l5brands=[];
         const l5clubs=[];
         const l5countries=[];
-        lvl5.forEach(logo=>{
-            if(logo.path.category===0){
-                l5brands.push(logo);
-            }else if(logo.path.category===1){
-                l5clubs.push(logo);
-            }else if(logo.path.category===2){
-                l5countries.push(logo)
-            }
-        })
-        if(l5brands.length >= logosInfo[4][0].arrays[0].array.length){
-            logosInfo[4][0].arrays[0].completed= true;
-        }
-        if(l5clubs.length >= logosInfo[4][0].arrays[1].array.length){
-            logosInfo[4][0].arrays[1].completed= true;
-        }
-        if(l5countries.length >= logosInfo[4][0].arrays[2].array.length){
-            logosInfo[4][0].arrays[2].completed= true;
-        }
-        logosInfo[4][0].arrays[0].completedLogos=l5brands;
-        logosInfo[4][0].arrays[1].completedLogos=l5clubs;
-        logosInfo[4][0].arrays[2].completedLogos=l5countries;
         
+        setLevelData(lvl5,l5brands, l5clubs, l5countries, 4);
+
         setLevel5({...level5,
             totalLogos: level5TotalLogos,
             completedLogos: lvl5.length,
@@ -287,27 +191,8 @@ export const LevelsPage = (props) => {
         const l6brands=[];
         const l6clubs=[];
         const l6countries=[];
-        lvl6.forEach(logo=>{
-            if(logo.path.category===0){
-                l6brands.push(logo);
-            }else if(logo.path.category===1){
-                l6clubs.push(logo);
-            }else if(logo.path.category===2){
-                l6countries.push(logo)
-            }
-        })
-        if(l6brands.length >= logosInfo[5][0].arrays[0].array.length){
-            logosInfo[5][0].arrays[0].completed= true;
-        }
-        if(l6clubs.length >= logosInfo[5][0].arrays[1].array.length){
-            logosInfo[5][0].arrays[1].completed= true;
-        }
-        if(l6countries.length >= logosInfo[5][0].arrays[2].array.length){
-            logosInfo[5][0].arrays[2].completed= true;
-        }
-        logosInfo[5][0].arrays[0].completedLogos=l6brands;
-        logosInfo[5][0].arrays[1].completedLogos=l6clubs;
-        logosInfo[5][0].arrays[2].completedLogos=l6countries;
+
+        setLevelData(lvl6,l6brands, l6clubs, l6countries, 5);
         
         setLevel6({...level6,
             totalLogos: level6TotalLogos,
@@ -373,10 +258,38 @@ export const LevelsPage = (props) => {
         }
     }
 
+    const setLevelData = (levelArray,brandArray, clubArray, countriesArray, levelIndex)=>{
+        levelArray.forEach(logo=>{
+            if(logo.path.category===0){
+                brandArray.push(logo);
+            }else if(logo.path.category===1){
+                clubArray.push(logo);
+            }else if(logo.path.category===2){
+                countriesArray.push(logo)
+            }
+        })
 
-    if(error){
+        if(brandArray.length >= logosInfo[levelIndex][0].arrays[0].array.length){
+            logosInfo[levelIndex][0].arrays[0].completed= true;
+        }
+        if(clubArray.length >= logosInfo[levelIndex][0].arrays[1].array.length){
+            logosInfo[levelIndex][0].arrays[1].completed= true;
+        }
+        if(countriesArray.length >= logosInfo[levelIndex][0].arrays[2].array.length){
+            logosInfo[levelIndex][0].arrays[2].completed= true;
+        }
+
+        logosInfo[levelIndex][0].arrays[0].completedLogos=brandArray;
+        logosInfo[levelIndex][0].arrays[1].completedLogos=clubArray;
+        logosInfo[levelIndex][0].arrays[2].completedLogos=countriesArray;
+
+        
+    }
+
+
+    if(error.state){
         return(
-            <ErrorComponent logout={handleLogout} />
+            <ErrorComponent logout={handleLogout} message={error.message} />
         )
     }
     if(level1===null){
