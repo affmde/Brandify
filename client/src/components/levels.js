@@ -98,7 +98,7 @@ export const LevelsPage = (props) => {
         })
         
         //Level 1 data
-        const level1TotalLogos= logosInfo[0][0].arrays[0].array.length + logosInfo[0][0].arrays[1].array.length + logosInfo[0][0].arrays[2].array.length;
+        const level1TotalLogos= logosInfo[0][0].arrays[0].array.length + logosInfo[0][0].arrays[1].array.length + logosInfo[0][0].arrays[2].array.length + logosInfo[0][0].arrays[3].array.length;
         const level1PercentCompleted= (lvl1.length / level1TotalLogos * 100);
         if(level1PercentCompleted>60){
             logosInfo[1][0].open=true
@@ -106,7 +106,8 @@ export const LevelsPage = (props) => {
         const l1brands=[];
         const l1clubs=[];
         const l1countries=[];
-        setLevelData(lvl1,l1brands, l1clubs, l1countries, 0);
+        const l1foods= [];
+        setLevelData(lvl1,l1brands, l1clubs, l1countries, l1foods, 0);
         
         setLevel1({...level1,
             totalLogos: level1TotalLogos,
@@ -115,13 +116,14 @@ export const LevelsPage = (props) => {
         })
 
         //Level 2 data
-        const level2TotalLogos= logosInfo[1][0].arrays[0].array.length + logosInfo[1][0].arrays[1].array.length + logosInfo[1][0].arrays[2].array.length;
+        const level2TotalLogos= logosInfo[1][0].arrays[0].array.length + logosInfo[1][0].arrays[1].array.length + logosInfo[1][0].arrays[2].array.length + logosInfo[1][0].arrays[3].array.length;
         const level2PercentCompleted= (lvl2.length / level2TotalLogos *100);
 
         const l2brands=[];
         const l2clubs=[];
         const l2countries=[];
-        setLevelData(lvl2,l2brands, l2clubs, l2countries, 1);
+        const l2foods= [];
+        setLevelData(lvl2,l2brands, l2clubs, l2countries, l2foods, 1);
         setLevel2({...level2,
             totalLogos: level2TotalLogos,
             completedLogos: lvl2.length,
@@ -129,7 +131,7 @@ export const LevelsPage = (props) => {
         })
         
         // set level 3 data
-        const level3TotalLogos= logosInfo[2][0].arrays[0].array.length + logosInfo[2][0].arrays[1].array.length + logosInfo[2][0].arrays[2].array.length;
+        const level3TotalLogos= logosInfo[2][0].arrays[0].array.length + logosInfo[2][0].arrays[1].array.length + logosInfo[2][0].arrays[2].array.length + logosInfo[2][0].arrays[3].array.length;
         const level3PercentCompleted= (lvl3.length / level3TotalLogos * 100);
         if(level2PercentCompleted>60){
             logosInfo[2][0].open=true
@@ -137,7 +139,8 @@ export const LevelsPage = (props) => {
         const l3brands=[];
         const l3clubs=[];
         const l3countries=[];
-        setLevelData(lvl3,l3brands, l3clubs, l3countries, 2);
+        const l3foods= [];
+        setLevelData(lvl3,l3brands, l3clubs, l3countries, l3foods, 2);
         
         setLevel3({...level3,
             totalLogos: level3TotalLogos,
@@ -147,7 +150,7 @@ export const LevelsPage = (props) => {
 
 
         //set level 4 data
-        const level4TotalLogos= logosInfo[3][0].arrays[0].array.length + logosInfo[3][0].arrays[1].array.length + logosInfo[3][0].arrays[2].array.length;
+        const level4TotalLogos= logosInfo[3][0].arrays[0].array.length + logosInfo[3][0].arrays[1].array.length + logosInfo[3][0].arrays[2].array.length + logosInfo[3][0].arrays[3].array.length;
         const level4PercentCompleted= (lvl4.length / level4TotalLogos * 100);
         if(level3PercentCompleted>60){
             logosInfo[3][0].open=true
@@ -155,8 +158,8 @@ export const LevelsPage = (props) => {
         const l4brands=[];
         const l4clubs=[];
         const l4countries=[];
-
-        setLevelData(lvl4,l4brands, l4clubs, l4countries, 3);
+        const l4foods= [];
+        setLevelData(lvl4,l4brands, l4clubs, l4countries, l4foods, 3);
 
         setLevel4({...level4,
             totalLogos: level4TotalLogos,
@@ -165,7 +168,7 @@ export const LevelsPage = (props) => {
         })
 
         //Set level 5 data
-        const level5TotalLogos= logosInfo[4][0].arrays[0].array.length + logosInfo[4][0].arrays[1].array.length + logosInfo[4][0].arrays[2].array.length;
+        const level5TotalLogos= logosInfo[4][0].arrays[0].array.length + logosInfo[4][0].arrays[1].array.length + logosInfo[4][0].arrays[2].array.length + logosInfo[4][0].arrays[3].array.length;
         const level5PercentCompleted= (lvl5.length / level5TotalLogos * 100);
         if(level4PercentCompleted>60){
             logosInfo[4][0].open=true
@@ -173,8 +176,8 @@ export const LevelsPage = (props) => {
         const l5brands=[];
         const l5clubs=[];
         const l5countries=[];
-        
-        setLevelData(lvl5,l5brands, l5clubs, l5countries, 4);
+        const l5foods= [];
+        setLevelData(lvl5,l5brands, l5clubs, l5countries, l5foods, 4);
 
         setLevel5({...level5,
             totalLogos: level5TotalLogos,
@@ -183,7 +186,7 @@ export const LevelsPage = (props) => {
         })
 
         //set level 6 data
-        const level6TotalLogos= logosInfo[5][0].arrays[0].array.length + logosInfo[5][0].arrays[1].array.length + logosInfo[5][0].arrays[2].array.length;
+        const level6TotalLogos= logosInfo[5][0].arrays[0].array.length + logosInfo[5][0].arrays[1].array.length + logosInfo[5][0].arrays[2].array.length + logosInfo[5][0].arrays[3].array.length;
         const level6PercentCompleted= (lvl6.length / level6TotalLogos * 100);
         if(level5PercentCompleted>60){
             logosInfo[5][0].open=true
@@ -191,8 +194,8 @@ export const LevelsPage = (props) => {
         const l6brands=[];
         const l6clubs=[];
         const l6countries=[];
-
-        setLevelData(lvl6,l6brands, l6clubs, l6countries, 5);
+        const l6foods=[];
+        setLevelData(lvl6,l6brands, l6clubs, l6countries, l6foods, 5);
         
         setLevel6({...level6,
             totalLogos: level6TotalLogos,
@@ -258,7 +261,7 @@ export const LevelsPage = (props) => {
         }
     }
 
-    const setLevelData = (levelArray,brandArray, clubArray, countriesArray, levelIndex)=>{
+    const setLevelData = (levelArray,brandArray, clubArray, foodArray, countriesArray, levelIndex)=>{
         levelArray.forEach(logo=>{
             if(logo.path.category===0){
                 brandArray.push(logo);
@@ -266,6 +269,8 @@ export const LevelsPage = (props) => {
                 clubArray.push(logo);
             }else if(logo.path.category===2){
                 countriesArray.push(logo)
+            }else if(logo.path.category===3){
+                foodArray.push(logo)
             }
         })
 
@@ -278,11 +283,14 @@ export const LevelsPage = (props) => {
         if(countriesArray.length >= logosInfo[levelIndex][0].arrays[2].array.length){
             logosInfo[levelIndex][0].arrays[2].completed= true;
         }
+        if(foodArray.length >= logosInfo[levelIndex][0].arrays[3].array.length){
+            logosInfo[levelIndex][0].arrays[3].completed=true
+        }
 
         logosInfo[levelIndex][0].arrays[0].completedLogos=brandArray;
         logosInfo[levelIndex][0].arrays[1].completedLogos=clubArray;
         logosInfo[levelIndex][0].arrays[2].completedLogos=countriesArray;
-
+        logosInfo[levelIndex][0].arrays[3].completedLogos=foodArray;
         
     }
 
