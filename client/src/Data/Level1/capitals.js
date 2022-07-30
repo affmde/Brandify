@@ -3,7 +3,7 @@ import capitalsLogo from '../../media/images/capitals.png';
 const capitalsLogos= [
     {
         id:0,
-        name: "roma",
+        name: "rome",
         logoUrl:"https://img.icons8.com/doodle/2x/italy.png",
         completed: false
     },
