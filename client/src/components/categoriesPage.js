@@ -29,7 +29,7 @@ export const CategoriesPage = (props) => {
             <Row className="justify-content-center categories-div">
                 {categories[0].arrays.map((c, i)=>{
                     return(
-                    <Col xs={12} md={6} lg={4} key={i} >
+                    <Col xs={6} md={6} lg={4} key={i} >
                         <p className="categories-titles">{c.title}</p>
                         <Image src={c.logo} alt="logo" className="category-to-choose" onClick={()=>chooseCategory(i)} />
                         <p className="categories-completed-text">Completed: {logosInfo[level][0].arrays[i].completedLogos.length} of {logosInfo[level][0].arrays[i].array.length}</p>
