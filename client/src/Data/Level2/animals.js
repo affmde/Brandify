@@ -50,7 +50,7 @@ const animalsLogos= [
         completed: false
     },{
         id: 8,
-        name: "gorila",
+        name: "gorilla",
         logoUrl: "https://img.icons8.com/office/2x/gorilla.png",
         completed: false
     }
