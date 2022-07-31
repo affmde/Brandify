@@ -39,13 +39,13 @@ const capitalsLogos= [
     },
     {
         id: 6,
-        name: "tokio",
+        name: "tokyo",
         logoUrl: "https://img.icons8.com/officel/2x/japan.png",
         completed: false
     },
     {
         id:7,
-        name: "brazilia",
+        name: "brasilia",
         logoUrl: "https://img.icons8.com/officel/2x/brazil.png",
         completed: false
     },{

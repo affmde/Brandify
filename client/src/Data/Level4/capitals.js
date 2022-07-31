@@ -15,7 +15,7 @@ const capitalsLogos= [
     },
     {
         id:2,
-        name: "bucarest",
+        name: "bucharest",
         logoUrl:"https://img.icons8.com/officel/2x/romania.png",
         completed: false
     },
@@ -27,13 +27,13 @@ const capitalsLogos= [
     },
     {
         id: 4,
-        name: "belgrad",
+        name: "belgrade",
         logoUrl: "https://img.icons8.com/officel/2x/serbia.png",
         completed: false
     },
     {
         id: 5,
-        name: "bratislav",
+        name: "bratislava",
         logoUrl: "https://img.icons8.com/officel/2x/slovakia.png",
         completed: false
     },
