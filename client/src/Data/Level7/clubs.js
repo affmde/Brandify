@@ -60,7 +60,7 @@ const clubsLogos=[
     },
     {
         id: 8,
-        name: 'mlamö',
+        name: 'malmö',
         logoUrl: malmo,
         completed: false
     }

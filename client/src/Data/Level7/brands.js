@@ -1,6 +1,5 @@
 import brandsLogo from "../../media/images/brands-logo.jpg";
 import lidl from "../../media/images/lidl.png";
-import adidas from "../../media/images/addidas.png";
 import paypal from "../../media/images/paypal.png";
 
 const brandsLogos= [
@@ -37,7 +36,7 @@ const brandsLogos= [
     {
         id: 5,
         name: "adidas",
-        logoUrl: adidas,
+        logoUrl: "https://img.icons8.com/ios-filled/2x/adidas-trefoil.png",
         completed: false
     },
     {

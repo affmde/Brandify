@@ -53,6 +53,12 @@ export const LevelsPage = (props) => {
         percenCompleted: 0,
         open: false
     });
+    const [level8, setLevel8] = useState({
+        totalLogos: 0,
+        completedLogos: 0,
+        percenCompleted: 0,
+        open: false
+    });
     const navigate= useNavigate();
 
     const chooseLevel = (i) => {
@@ -88,6 +94,7 @@ export const LevelsPage = (props) => {
         const lvl5=[];
         const lvl6=[];
         const lvl7=[];
+        const lvl8=[];
         data.completedLogos.forEach((obj, i)=>{
             if(obj.path.level===0){
                 lvl1.push(obj)
@@ -103,6 +110,8 @@ export const LevelsPage = (props) => {
                 lvl6.push(obj)
             }else if(obj.path.level===6){
                 lvl7.push(obj)
+            }else if(obj.path.level===7){
+                lvl8.push(obj)
             }
         })
         
@@ -244,9 +253,29 @@ export const LevelsPage = (props) => {
             percenCompleted: level7PercentCompleted,
         })
 
+        //set level 8 data
+        const level8TotalLogos= logosInfo[7][0].arrays[0].array.length + logosInfo[7][0].arrays[1].array.length + logosInfo[7][0].arrays[2].array.length + logosInfo[7][0].arrays[3].array.length + logosInfo[7][0].arrays[4].array.length + logosInfo[7][0].arrays[5].array.length;
+        const level8PercentCompleted= (lvl8.length / level8TotalLogos * 100);
+        if(level6PercentCompleted>60){
+            logosInfo[7][0].open=true
+        }
+        const l8brands=[];
+        const l8clubs=[];
+        const l8countries=[];
+        const l8foods=[];
+        const l8animals=[];
+        const l8capitals=[];
+        setLevelData(lvl8,l8brands, l8clubs, l8countries, l8foods, l8animals, l8capitals, 7);
+        
+        setLevel8({...level8,
+            totalLogos: level8TotalLogos,
+            completedLogos: lvl8.length,
+            percenCompleted: level8PercentCompleted,
+        })
+
         //Total data stats
-        setTotalCompleted(lvl1.length + lvl2.length + lvl3.length + lvl4.length+lvl5.length+lvl6.length+lvl7.length);
-        setTotalLogos( level1TotalLogos + level2TotalLogos + level3TotalLogos + level4TotalLogos+level5TotalLogos+level6TotalLogos+level7TotalLogos);
+        setTotalCompleted(lvl1.length + lvl2.length + lvl3.length + lvl4.length+lvl5.length+lvl6.length+lvl7.length+lvl8.length);
+        setTotalLogos( level1TotalLogos + level2TotalLogos + level3TotalLogos + level4TotalLogos+level5TotalLogos+level6TotalLogos+level7TotalLogos + level8TotalLogos);
         setTotalPercent(totalCompleted / totalLogos * 100);
 
     }
@@ -304,6 +333,12 @@ export const LevelsPage = (props) => {
                 level: "Level 7",
                 completed: level7.completedLogos,
                 percentage: level7.percenCompleted
+            }
+        }else if(index===7){
+            return{
+                level: "Level 8",
+                completed: level8.completedLogos,
+                percentage: level8.percenCompleted
             }
         }
     }
