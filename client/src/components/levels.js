@@ -332,13 +332,13 @@ export const LevelsPage = (props) => {
             return{
                 level: "Level 7",
                 completed: level7.completedLogos,
-                percentage: level7.percenCompleted
+                percentage: level7.percenCompleted.toFixed(0)
             }
         }else if(index===7){
             return{
                 level: "Level 8",
                 completed: level8.completedLogos,
-                percentage: level8.percenCompleted
+                percentage: level8.percenCompleted.toFixed(0)
             }
         }
     }
