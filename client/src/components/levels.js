@@ -256,7 +256,7 @@ export const LevelsPage = (props) => {
         //set level 8 data
         const level8TotalLogos= logosInfo[7][0].arrays[0].array.length + logosInfo[7][0].arrays[1].array.length + logosInfo[7][0].arrays[2].array.length + logosInfo[7][0].arrays[3].array.length + logosInfo[7][0].arrays[4].array.length + logosInfo[7][0].arrays[5].array.length;
         const level8PercentCompleted= (lvl8.length / level8TotalLogos * 100);
-        if(level6PercentCompleted>60){
+        if(level7PercentCompleted>60){
             logosInfo[7][0].open=true
         }
         const l8brands=[];
