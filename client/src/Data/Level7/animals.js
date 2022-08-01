@@ -10,7 +10,7 @@ const animalsLogos= [
     {
         id:1,
         name: "fox",
-        logoUrl:"https://cdn-icons.flaticon.com/png/128/2153/premium/2153090.png?token=exp=1659359092~hmac=fd0d308ee5bd030e4e1c63b655d564f8",
+        logoUrl:"https://img.icons8.com/external-dreamcreateicons-flat-dreamcreateicons/2x/external-fox-autumn-season-dreamcreateicons-flat-dreamcreateicons.png",
         completed: false
     },
     {
@@ -22,7 +22,7 @@ const animalsLogos= [
     {
         id: 3,
         name: "chick",
-        logoUrl: "https://cdn-icons.flaticon.com/png/128/2632/premium/2632839.png?token=exp=1659359092~hmac=f94fe779b11da7acc4be11a568212032",
+        logoUrl: "https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-chick-easter-vitaliy-gorbachev-flat-vitaly-gorbachev.png",
         completed: false
     },
     {
@@ -34,24 +34,24 @@ const animalsLogos= [
     {
         id: 5,
         name: "jellyfish",
-        logoUrl: "https://cdn-icons.flaticon.com/png/128/2977/premium/2977327.png?token=exp=1659359092~hmac=e4317aa139af0322abb88cfe5b1cd42a",
+        logoUrl: "https://img.icons8.com/external-wanicon-lineal-color-wanicon/2x/external-jellyfish-world-oceans-day-wanicon-lineal-color-wanicon.png",
         completed: false
     },
     {
         id: 6,
         name: "axolotl",
-        logoUrl: "https://cdn-icons.flaticon.com/png/128/6187/premium/6187446.png?token=exp=1659359092~hmac=bb36d61c050f0c3d1c074a3c48e4114c",
+        logoUrl: "https://img.icons8.com/dusk/2x/axolotl.png",
         completed: false
     },
     {
         id:7,
         name: "giraffe",
-        logoUrl: "https://cdn-icons.flaticon.com/png/128/3065/premium/3065712.png?token=exp=1659359302~hmac=68f34fcac9fc8291413c596fdd5e9b8a",
+        logoUrl: "https://img.icons8.com/external-tulpahn-flat-tulpahn/2x/external-giraffe-wild-animals-tulpahn-flat-tulpahn.png",
         completed: false
     },{
         id: 8,
         name: "rhino",
-        logoUrl: "https://cdn-icons.flaticon.com/png/128/3065/premium/3065734.png?token=exp=1659359327~hmac=ea77dbd0e902c1b3be4561b209d3ec5c",
+        logoUrl: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/2x/external-rhinoceros-animal-flaticons-lineal-color-flat-icons-3.png",
         completed: false
     }
 ]
