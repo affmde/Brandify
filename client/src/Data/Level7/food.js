@@ -3,7 +3,7 @@ import foodLogo from '../../media/images/foodMainLogo.png';
 const foodsLogos= [
     {
         id:0,
-        name: "aspargus",
+        name: "asparagus",
         logoUrl:"https://img.icons8.com/officel/2x/asparagus.png",
         completed: false
     },
@@ -51,7 +51,7 @@ const foodsLogos= [
     },
     {
         id: 8,
-        name: "pomegrandate",
+        name: "pomegranate",
         logoUrl: "https://img.icons8.com/officel/2x/pomegranate.png",
         completed: false
     }
