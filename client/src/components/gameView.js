@@ -7,7 +7,7 @@ import { TopNav } from "./topNav";
 import correctGif from '../media/images/correctGif.gif';
 import {CountUp} from "use-count-up"
 import { HelspsModal } from "./helpsModal";
-import { ErrorComponent } from "./handlingComponents/Error/errorComponent";
+
 
 export const GameView = (props) => {
     const navigate= useNavigate();
@@ -17,6 +17,7 @@ export const GameView = (props) => {
     const [randomLetters, setRandomLetters] = useState([]);
     const [updateCoins, setUpdateCoins] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
+    const [indexForHelp, setIndexForHelp] = useState(null);
     let answer=[];
     let stringAnswer = "";
     
@@ -27,7 +28,7 @@ export const GameView = (props) => {
             answer.push({letter: logo.name[i]})
         }
     }
-    
+
     
     const randLetters=[];
     const createRandomLetters = () =>{
@@ -90,6 +91,11 @@ export const GameView = (props) => {
         coinsReward();
         addCompletedLogo();
         navigate('/logos');
+    }
+
+    const handleShowHelp = (index) => {
+        setIndexForHelp(index);
+        setShowHelp(true);
     }
 
     useEffect(()=>{
@@ -157,7 +163,7 @@ export const GameView = (props) => {
     return(
         <>
         <TopNav title={`Level ${level +1}`} page="logos" coins={<CountUp isCounting={updateCoins ? true : false} start={props.coins} end={props.coins+15} />}></TopNav>
-        <Image alt="help" src="https://img.icons8.com/dotty/2x/help.png" id="help-button" onClick={() => setShowHelp(true)}></Image>
+        <Image alt="help" src="https://img.icons8.com/dotty/2x/help.png" id="help-button" onClick={() => handleShowHelp(checkAvailableIndex(answer))}></Image>
         <Container>
             <Row className="justify-content-center gameView-container">
                 <Col xs="auto">
@@ -188,6 +194,8 @@ export const GameView = (props) => {
             name={logo.name}
             setCoins={props.setCoins}
             coins={props.coins}
+            index={indexForHelp}
+            answer={answer}
             />}
             </Row>
         </Container>
