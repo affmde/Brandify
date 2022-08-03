@@ -6,21 +6,6 @@ export const HelspsModal = (props) => {
     //solution variable used on show word tip
     const solution = props.name.replace("_", " ")
 
-    //ifword has a space then this will adjust the index to show
-    let helpWord;
-    const createHelpWord = ()=>{
-        const wordArray=[];
-        for(let i=0; i<props.name.length; i++){
-            if(props.name[i]!=='_'){
-                wordArray.push(props.name[i]);
-            }
-        }
-        helpWord=wordArray.join("");
-    }
-    useEffect(()=>{
-        createHelpWord();
-    }, [])
-    
     const spendCoins = async (c) =>{
         const body={
             coins: c
@@ -55,15 +40,13 @@ export const HelspsModal = (props) => {
     }
     const showLetter = (cost) => {
         if(props.coins > cost){
-            document.getElementById('showName').style.display= 'block';
-            document.getElementById('showName').innerHTML= `The letter number ${props.index+1} is ${helpWord[props.index].toUpperCase()}`
-            document.getElementById('show-word-btn').style.display= "none";
-            document.getElementById('show-letter-btn').style.display= "none";
-            document.getElementById('helps-title').style.display= "none";
-            document.getElementById("no-help").style.display= "none";
-            document.getElementById("understood").style.display= "block"
             spendCoins(cost)
             props.setCoins(props.coins+cost)
+            const actualAnswer= props.answer
+            const i= props.rand.indexOf(props.name[props.index])
+            actualAnswer[props.index]={letter: props.name[props.index].toUpperCase(), index: i}
+            props.handleShowWord();
+            props.onHide();
         }else{
             document.getElementById('noMoney').style.display= 'block';
             setTimeout(()=>{
@@ -76,7 +59,7 @@ export const HelspsModal = (props) => {
                 
                 <div className="helps-div">
                    <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
-                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(-(400/props.name.length).toFixed(0))} id="show-letter-btn">
+                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(0)} id="show-letter-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show letter</p>
                             <div className="helps-btn-costDiv">

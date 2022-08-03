@@ -17,23 +17,46 @@ export const GameView = (props) => {
     const [updateCoins, setUpdateCoins] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
     const [indexForHelp, setIndexForHelp] = useState(null);
-    
-    let answer=[];
+    const [answer, setAnswer] = useState([]);
+    const [helped, setHelped] = useState(false)
+    const [stringConverted, setStringConverted] = useState("")
+    const logoNameWithSpace = logo.name.replace('_', " ")
+    //let answer=[];
     let stringAnswer = "";
-
-    for(let i=0; i<logo.name.length; i++){
-        if(logo.name[i]!=="_"){
-            answer.push({letter: null})
-        }else{
-            answer.push({letter: logo.name[i]})
+    useEffect(()=>{
+        const array=[]
+        for(let i=0; i<logo.name.length; i++){
+            if(logo.name[i]!=="_"){
+                array.push({letter: null})
+            }else{
+                array.push({letter: logo.name[i]})
+            }
         }
-    }
+        setAnswer(array)
+        createRandomLetters();
+        
+    }, [])
+
+    useEffect(()=>{
+        if(!showHelp){
+            for(let i= 0; i<answer.length; i++){
+                if(answer[i].letter !== null){
+                    document.getElementById(i).innerHTML=answer[i].letter.toUpperCase()
+                }
+                if(answer[i].index){
+                    document.getElementById(`letter-${answer[i].index}`).style.visibility='hidden'
+                }
+            }
+        }
+    })
     
     const randLetters=[];
     const createRandomLetters = () =>{
-        for(let i=0; i<logo.name.length; i++){
-            if(logo.name[i] !== "_"){
-                randLetters.push(logo.name[i]);
+        if(randLetters.length<1){
+            for(let i=0; i<logo.name.length; i++){
+                if(logo.name[i] !== "_"){
+                    randLetters.push(logo.name[i]);
+                }
             }
         }
         const nameLength= logo.name.length<5 ? 6 : 12;
@@ -42,10 +65,8 @@ export const GameView = (props) => {
             const rand= Math.floor(Math.random()*characters.length);
             randLetters.push(characters[rand]);
         }
+        setRandomLetters(shuffle(randLetters));
     }
-
-    createRandomLetters();
-    
     
     const addToResponse = (e, index) => {
         if(stringAnswer.length<logo.name.length){
@@ -57,32 +78,39 @@ export const GameView = (props) => {
                 letter,
                 index,
             };
-            answer= updatedAnswer;
+            setAnswer(updatedAnswer)
             stringAnswer= covertAnswerToString(answer);
             e.target.style.visibility= "hidden"
             const won= checkMatch(logo.name, stringAnswer, level, category, logo);
-            if(won){
-                document.getElementById("randLetters").style.display= "none";
-                document.getElementById("logoName").style.display= "none";
-                document.getElementById("correct-div").style.display="block";
-                setUpdateCoins(true);
-            }else if(!won && stringAnswer.length===logo.name.length){
-                const answer= document.querySelectorAll(".letter-box");
-                answer.forEach(a=>a.style.backgroundColor= "red")
-                setTimeout(()=>{
-                    answer.forEach(a=>a.style.backgroundColor= "transparent") 
-                }, 500)
-            }
+            handleCheckWin(won)
         }
-        
+    }
+
+    const handleCheckWin = (won) =>{
+        if(won){
+            document.getElementById("randLetters").style.display= "none";
+            document.getElementById("logoName").style.display= "none";
+            document.getElementById("correct-div").style.display="block";
+            document.getElementById('confirmed-logo-name').classList.add('transition')
+            setUpdateCoins(true);
+        }else if(!won && stringAnswer.length===logo.name.length){
+            const answer= document.querySelectorAll(".letter-box");
+            answer.forEach(a=>a.style.backgroundColor= "red")
+            setTimeout(()=>{
+                answer.forEach(a=>a.style.backgroundColor= "transparent") 
+            }, 500)
+        }
     }
 
     const removeLetter = (e, index) => {
-        e.target.innerHTML= "";
-        const indexToEdit= answer[index].index;
-        stringAnswer= covertAnswerToString(answer);
-        document.getElementById(`letter-${indexToEdit}`).style.visibility= "visible";
-        answer[index]= {letter:null}
+        if(e.target.innerHTML!==""){
+            e.target.innerHTML= "";
+            const indexToEdit= answer[index].index;
+            stringAnswer= covertAnswerToString(answer);
+            document.getElementById(`letter-${indexToEdit}`).style.visibility= "visible";
+            answer[index]= {letter:null}
+        }
+        
     }
 
     const continueFunction = (coins) =>{
@@ -93,21 +121,9 @@ export const GameView = (props) => {
     }
 
     const handleShowHelp = (index) => {
-        //ifword has a space then this will adjust the index to show
-        let countSpaces=0;
-        for(let i=0; i<index; i++){
-            if(answer[i].letter==="_"){
-                countSpaces++;
-            }
-        }
-        setIndexForHelp(index-countSpaces);
+        setIndexForHelp(index);
         setShowHelp(true);
     }
-
-    useEffect(()=>{
-        setRandomLetters(shuffle(randLetters));
-    }, [])
-
 
     const coinsReward = async () =>{
         const body={
@@ -165,6 +181,27 @@ export const GameView = (props) => {
         }
     }
 
+    const handleShowWord = () => {
+        stringAnswer= covertAnswerToString(answer);
+        setStringConverted(stringAnswer)
+        setHelped(true);
+        setTimeout(()=>{
+            setHelped(false);
+        }, 2000)
+    }
+
+    useEffect(()=>{
+        if(indexForHelp){
+            if(helped){
+                document.getElementById(indexForHelp).style.background='green';
+                const won= checkMatch(logo.name, stringConverted, level, category, logo);
+                handleCheckWin(won);
+            }else{
+                document.getElementById(indexForHelp).style.background='transparent'
+            }
+        }
+    }, [helped])
+
     return(
         <>
         <TopNav title={`Level ${level +1}`} page="logos" coins={<CountUp isCounting={updateCoins ? true : false} start={props.coins} end={props.coins+15} />}></TopNav>
@@ -188,6 +225,7 @@ export const GameView = (props) => {
             </div>}
             {!showHelp && <div id="correct-div">
                 <div className="correct-div-flex">
+                    <p id="confirmed-logo-name">{logoNameWithSpace.toUpperCase()}</p>
                     <img alt="correct" src={correctGif} id="correct-gif"></img>
                     <Button onClick={()=>continueFunction(15)} id="continueBtn">Continue</Button>
                 </div>
@@ -200,6 +238,10 @@ export const GameView = (props) => {
             setCoins={props.setCoins}
             coins={props.coins}
             index={indexForHelp}
+            answer={answer}
+            setAnswer={setAnswer}
+            rand={randomLetters}
+            handleShowWord={handleShowWord}
             />}
             </Row>
         </Container>
@@ -241,6 +283,8 @@ function shuffle(array) {
         logosInfo[level][0].arrays[category].completedLogos.push(logo);
         same.completed=true;
         return true
+    }else{
+        return false
     }
   }
 

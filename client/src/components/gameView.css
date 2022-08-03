@@ -77,6 +77,18 @@
     transform: scale(1.05);
 }
 
+#confirmed-logo-name{
+    color: rgba(47, 71, 226, 0.858); 
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    letter-spacing: 5px; 
+    line-height: 1; 
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+
 @media only screen and (max-width: 576px){
     #game-logo{
         width: 50vw;
