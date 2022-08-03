@@ -24,13 +24,15 @@ export const HelspsModal = (props) => {
     }
     const showName = (c) => {
         if(props.coins > 400){
-            document.getElementById('showName').style.display= 'block';
-            document.getElementById('show-word-btn').style.display= "none";
-            document.getElementById('helps-title').style.display= "none";
-            document.getElementById("no-help").style.display= "none";
-            document.getElementById("understood").style.display= "block"
             spendCoins(c)
             props.setCoins(props.coins+c)
+            const actualAnswer= props.answer
+            for(let i=0; i<props.name.length; i++){
+                actualAnswer[i]={letter: props.name[i], index: i}
+            }
+            props.handleShowLetter(2);
+            props.onHide();
+
         }else{
             document.getElementById('noMoney').style.display= 'block';
             setTimeout(()=>{
@@ -45,7 +47,7 @@ export const HelspsModal = (props) => {
             const actualAnswer= props.answer
             const i= props.rand.indexOf(props.name[props.index])
             actualAnswer[props.index]={letter: props.name[props.index].toUpperCase(), index: i}
-            props.handleShowWord();
+            props.handleShowLetter(1);
             props.onHide();
         }else{
             document.getElementById('noMoney').style.display= 'block';
@@ -59,7 +61,7 @@ export const HelspsModal = (props) => {
                 
                 <div className="helps-div">
                    <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
-                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(-(400/props.name.length).toFixed(0))} id="show-letter-btn">
+                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(0)} id="show-letter-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show letter</p>
                             <div className="helps-btn-costDiv">
@@ -68,7 +70,7 @@ export const HelspsModal = (props) => {
                             </div>
                         </div>
                     </Button>
-                    <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(-400)} id="show-word-btn">
+                    <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(0)} id="show-word-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show complete word</p>
                             <div className="helps-btn-costDiv">

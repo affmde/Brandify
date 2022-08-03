@@ -19,6 +19,7 @@ export const GameView = (props) => {
     const [indexForHelp, setIndexForHelp] = useState(null);
     const [answer, setAnswer] = useState([]);
     const [helped, setHelped] = useState(false)
+    const [fullHelp, setFullHelp] = useState(false);
     const [stringConverted, setStringConverted] = useState("")
     const logoNameWithSpace = logo.name.replace('_', " ")
     //let answer=[];
@@ -181,28 +182,41 @@ export const GameView = (props) => {
         }
     }
 
-    const handleShowWord = () => {
+    const handleShowLetter = (helpNumber) => {
         stringAnswer= covertAnswerToString(answer);
         setStringConverted(stringAnswer)
-        setHelped(true);
-        setTimeout(()=>{
-            setHelped(false);
-        }, 2000)
+        if(helpNumber===1){
+            setHelped(true);
+            setTimeout(()=>{
+                setHelped(false);
+            }, 2000)
+        }else if(helpNumber===2){
+            setFullHelp(true);
+            setTimeout(()=>{
+                setFullHelp(false);
+            }, 2000)
+        }
     }
-
-    
 
     useEffect(()=>{
         if(indexForHelp){
             if(helped){
                 document.getElementById(indexForHelp).style.background='green';
+                setTimeout(()=>{
+                    document.getElementById(indexForHelp).style.background='transparent'
+                }, 2000)
                 const won= checkMatch(logo.name, stringConverted, level, category, logo);
                 handleCheckWin(won);
-            }else{
-                document.getElementById(indexForHelp).style.background='transparent'
             }
         }
     }, [helped])
+
+    useEffect(()=>{
+        if(fullHelp){
+            const won= checkMatch(logo.name, stringConverted, level, category, logo);
+            handleCheckWin(won);
+        }
+    }, [fullHelp])
 
     return(
         <>
@@ -243,7 +257,7 @@ export const GameView = (props) => {
             answer={answer}
             setAnswer={setAnswer}
             rand={randomLetters}
-            handleShowWord={handleShowWord}
+            handleShowLetter={handleShowLetter}
             />}
             </Row>
         </Container>
