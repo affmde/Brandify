@@ -1,8 +1,26 @@
 import "./helpsModal.css";
-import { Container, Button, Image } from "react-bootstrap"
+import { Container, Button, Image } from "react-bootstrap";
+import { useEffect } from "react";
 
 export const HelspsModal = (props) => {
+    //solution variable used on show word tip
     const solution = props.name.replace("_", " ")
+
+    //ifword has a space then this will adjust the index to show
+    let helpWord;
+    const createHelpWord = ()=>{
+        const wordArray=[];
+        for(let i=0; i<props.name.length; i++){
+            if(props.name[i]!=='_'){
+                wordArray.push(props.name[i]);
+            }
+        }
+        helpWord=wordArray.join("");
+    }
+    useEffect(()=>{
+        createHelpWord();
+    }, [])
+    
     const spendCoins = async (c) =>{
         const body={
             coins: c
@@ -38,7 +56,7 @@ export const HelspsModal = (props) => {
     const showLetter = (cost) => {
         if(props.coins > cost){
             document.getElementById('showName').style.display= 'block';
-            document.getElementById('showName').innerHTML= `The letter number ${props.index+1} is ${props.name[props.index]}`
+            document.getElementById('showName').innerHTML= `The letter number ${props.index+1} is ${helpWord[props.index].toUpperCase()}`
             document.getElementById('show-word-btn').style.display= "none";
             document.getElementById('show-letter-btn').style.display= "none";
             document.getElementById('helps-title').style.display= "none";
@@ -58,7 +76,7 @@ export const HelspsModal = (props) => {
                 
                 <div className="helps-div">
                    <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
-                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(-(400/props.name.length).toFixed(0))} id="show-letter-btn">
+                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(0)} id="show-letter-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show letter</p>
                             <div className="helps-btn-costDiv">

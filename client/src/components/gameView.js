@@ -8,7 +8,6 @@ import correctGif from '../media/images/correctGif.gif';
 import {CountUp} from "use-count-up"
 import { HelspsModal } from "./helpsModal";
 
-
 export const GameView = (props) => {
     const navigate= useNavigate();
     const logo= props.logo;
@@ -18,9 +17,10 @@ export const GameView = (props) => {
     const [updateCoins, setUpdateCoins] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
     const [indexForHelp, setIndexForHelp] = useState(null);
+    
     let answer=[];
     let stringAnswer = "";
-    
+
     for(let i=0; i<logo.name.length; i++){
         if(logo.name[i]!=="_"){
             answer.push({letter: null})
@@ -28,7 +28,6 @@ export const GameView = (props) => {
             answer.push({letter: logo.name[i]})
         }
     }
-
     
     const randLetters=[];
     const createRandomLetters = () =>{
@@ -94,14 +93,20 @@ export const GameView = (props) => {
     }
 
     const handleShowHelp = (index) => {
-        setIndexForHelp(index);
+        //ifword has a space then this will adjust the index to show
+        let countSpaces=0;
+        for(let i=0; i<index; i++){
+            if(answer[i].letter==="_"){
+                countSpaces++;
+            }
+        }
+        setIndexForHelp(index-countSpaces);
         setShowHelp(true);
     }
 
     useEffect(()=>{
         setRandomLetters(shuffle(randLetters));
     }, [])
-
 
 
     const coinsReward = async () =>{
@@ -195,7 +200,6 @@ export const GameView = (props) => {
             setCoins={props.setCoins}
             coins={props.coins}
             index={indexForHelp}
-            answer={answer}
             />}
             </Row>
         </Container>

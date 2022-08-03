@@ -79,7 +79,6 @@ export const LevelsPage = (props) => {
         }
         const response = await fetch("/users/user", requestOptions );
         const data= await response.json();
-        console.log(data)
         if(data.err){
             return setError({...error, state: true, message: data.message});
             
