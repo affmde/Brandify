@@ -190,6 +190,8 @@ export const GameView = (props) => {
         }, 2000)
     }
 
+    
+
     useEffect(()=>{
         if(indexForHelp){
             if(helped){
