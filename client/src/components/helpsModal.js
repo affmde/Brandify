@@ -76,7 +76,7 @@ export const HelspsModal = (props) => {
                 
                 <div className="helps-div">
                    <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
-                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(0)} id="show-letter-btn">
+                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(-(400/props.name.length).toFixed(0))} id="show-letter-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show letter</p>
                             <div className="helps-btn-costDiv">
