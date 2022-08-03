@@ -5,7 +5,7 @@ import { Container, Button, Image } from "react-bootstrap";
 export const HelspsModal = (props) => {
     //solution variable used on show word tip
     const solution = props.name.replace("_", " ")
-
+    const nbrToDivide = props.name.includes("_") ? props.name.length-1 : props.name.length;
     const spendCoins = async (c) =>{
         const body={
             coins: c
@@ -61,16 +61,16 @@ export const HelspsModal = (props) => {
                 
                 <div className="helps-div">
                    <p style={{fontSize: '2rem'}} id="helps-title">Do you need help?</p>
-                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(0)} id="show-letter-btn">
+                   <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showLetter(-(400/(nbrToDivide-1)).toFixed(0))} id="show-letter-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show letter</p>
                             <div className="helps-btn-costDiv">
                                 <Image alt="coin" src="https://img.icons8.com/emoji/2x/coin-emoji.png" className="help-coin"></Image>
-                                <p className="help-cost">{(400/props.name.length).toFixed(0)}</p>
+                                <p className="help-cost">{(400/(nbrToDivide-1)).toFixed(0)}</p>
                             </div>
                         </div>
                     </Button>
-                    <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(0)} id="show-word-btn">
+                    <Button variant="success" style={{width: '100%', margin:'2vh 0'}} onClick={()=>showName(-400)} id="show-word-btn">
                         <div className="helps-button-div">
                             <p className="help-description">Show complete word</p>
                             <div className="helps-btn-costDiv">
