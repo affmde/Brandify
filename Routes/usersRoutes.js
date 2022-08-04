@@ -38,7 +38,9 @@ usersRouter.post("/createUser", async(req, res)=>{
         email: body.email,
         password: password,
         completedLogos: [],
-        coins: 0
+        coins: 0,
+        redeemedCategories: [],
+        redeemedLevel: []
     }
 
     const saveUser= new Users(newUser)
@@ -112,7 +114,7 @@ usersRouter.get("/user", async (req, res)=> {
     });
     if(id){
         const user= await Users.findById(id);
-        res.status(201).json({coins: user.coins, completedLogos: user.completedLogos})
+        res.status(201).json({coins: user.coins, completedLogos: user.completedLogos, redeemedCategories: user.redeemedCategories, redeemedLevel: user.redeemedLevel})
     }
    }catch(error){
     console.log('error detected')
@@ -180,12 +182,86 @@ usersRouter.post("/addLogo", async (req, res)=>{
     try{
         if(id){
             const user = await Users.findByIdAndUpdate(id, {$push: {completedLogos: {logo: body.logo, path: body.path}}})
-            res.status(200).json({message: "Updated successfuly!"})
+            res.status(200).json({success: true, message: "Updated successfuly!"})
         }
     }catch(err){
-        res.status(404).json({err: "Something happened"})
+        res.status(404).json({success: false, err: "Something happened"})
     }
 })
+
+
+usersRouter.post("/addRedeemedCategory", async (req, res)=> {
+    const headers= req.headers;
+    const body= req.body;
+    
+    let tk;
+    if (headers.authorization.startsWith("Bearer ")){
+        tk= headers.authorization.substring(7, headers.authorization.length);
+   } else {
+      //Error
+   }
+   let id;
+    jwt.verify(tk, process.env.SECRET, function(err, decoded) {
+        if(err){
+            let message = "You can't see this page!"
+            if(err.name==="ValidationError") message= handleValidationError(err);
+            if(err.name==="TokenExpiredError") message=handleTokenExpirationError(err)
+            
+            return res.status(400).json({
+                success: false,
+                message: message
+            })
+        }
+        
+        id= decoded.id
+    });
+    try{
+        if(id){
+            const user = await Users.findByIdAndUpdate(id, {$push: {redeemedCategories: {categoy: body.category, path: body.path}}})
+            res.status(200).json({success: true, message: "Updated successfuly!"})
+        }
+    }catch(err){
+        res.status(404).json({success: false, err: "Something happened"})
+    }
+})
+
+
+
+usersRouter.post("/addRedeemedLevel", async (req, res)=> {
+    const headers= req.headers;
+    const body= req.body;
+    
+    let tk;
+    if (headers.authorization.startsWith("Bearer ")){
+        tk= headers.authorization.substring(7, headers.authorization.length);
+   } else {
+      //Error
+   }
+   let id;
+    jwt.verify(tk, process.env.SECRET, function(err, decoded) {
+        if(err){
+            let message = "You can't see this page!"
+            if(err.name==="ValidationError") message= handleValidationError(err);
+            if(err.name==="TokenExpiredError") message=handleTokenExpirationError(err)
+            
+            return res.status(400).json({
+                success: false,
+                message: message
+            })
+        }
+        
+        id= decoded.id
+    });
+    try{
+        if(id){
+            const user = await Users.findByIdAndUpdate(id, {$push: {redeemedLevel: {level: body.level}}})
+            res.status(200).json({success: true, message: "Updated successfuly!"})
+        }
+    }catch(err){
+        res.status(404).json({success: false, err: "Something happened"})
+    }
+})
+
 
 
 module.exports = usersRouter;

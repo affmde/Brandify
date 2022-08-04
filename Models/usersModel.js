@@ -24,6 +24,12 @@ const userSchema = new mongoose.Schema({
     },
     completedLogos: {
         type: Array
+    },
+    redeemedCategories:{
+        type: Array
+    },
+    redeemedLevel:{
+        type: Array
     }
 })
 

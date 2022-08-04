@@ -14,6 +14,14 @@
     margin-bottom: 2vh;
 }
 
+.redeem-button{
+    background-color: orange;
+}
+
+.completed-level-button{
+    background-color: green;
+}
+
 .levels-button{
     font-size: 2rem;
     border-color: black;

@@ -65,5 +65,6 @@ export const capitals= {
     logo: capitalsLogo,
     title: "Capitals",
     completedLogos: [],
-    completed: false
+    completed: false,
+    redeem: false
 }

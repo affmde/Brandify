@@ -62,5 +62,6 @@ export const countries= {
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOGUgxKtfWtp-uq0KLY5DseyCARB4ww-mzlw&usqp=CAU",
     title: "Countries",
     completedLogos: [],
-    completed: false
+    completed: false,
+    redeem: false
 }

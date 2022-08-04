@@ -72,5 +72,6 @@ export const brands= {
     logo: brandsLogo,
     title: "Brands",
     completedLogos: [],
-    completed: false
+    completed: false,
+    redeem: false
 }

@@ -10,6 +10,7 @@ export const level4 =[
         name: 'level 4',
         open: false,
         completed: false,
+        redeem: false,
         arrays: [brands, clubs, countries, foods, animals, capitals],
         totalLogos: brands.array.length + clubs.array.length + countries.array.length + foods.array.length + animals.array.length + capitals.array.length,
         totalLogosCompleted: brands.completedLogos.length + clubs.completedLogos.length + countries.completedLogos.length + foods.completedLogos.length + animals.completedLogos.length + capitals.completedLogos.length,

@@ -26,6 +26,7 @@ export const HelspsModal = (props) => {
         if(props.coins > 400){
             spendCoins(c)
             props.setCoins(props.coins+c)
+            props.update(props.coins+c)
             const actualAnswer= props.answer
             for(let i=0; i<props.name.length; i++){
                 actualAnswer[i]={letter: props.name[i], index: i}
@@ -44,6 +45,7 @@ export const HelspsModal = (props) => {
         if(props.coins > cost){
             spendCoins(cost)
             props.setCoins(props.coins+cost)
+            props.update(props.coins+cost)
             const actualAnswer= props.answer
             const i= props.rand.indexOf(props.name[props.index])
             actualAnswer[props.index]={letter: props.name[props.index].toUpperCase(), index: i}

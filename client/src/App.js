@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage setLogged={setLogged} />}></Route>
           {logged && <Route path="/levels" element={<LevelsPage level={level} setLevel={setLevel} category={category} coins={coins} setCoins={setCoins} setLogged={setLogged}/>}></Route>}
-          {logged && <Route path="/categories" element={<CategoriesPage level={level} setCategory={setCategory} category={category} coins={coins}/>}></Route>}
+          {logged && <Route path="/categories" element={<CategoriesPage level={level} setCategory={setCategory} category={category} coins={coins} setCoins={setCoins}/>}></Route>}
           {logged && <Route path="/logos" element={<LogosPage level={level} category={category} logo={logo} setLogo={setLogo} coins={coins}/>}></Route> }
           {logged && <Route path="/game" element={<GameView level={level} category={category} logo={logo} coins={coins} setCoins={setCoins} setLogged={setLogged} setShowToast={setShowToast} />}></Route>}
           <Route

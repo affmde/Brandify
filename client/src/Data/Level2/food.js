@@ -62,5 +62,6 @@ export const foods= {
     logo: foodLogo,
     title: "Foods",
     completedLogos: [],
-    completed: false
+    completed: false,
+    redeem: false
 }

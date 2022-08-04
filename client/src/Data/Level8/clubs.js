@@ -68,5 +68,6 @@ export const clubs={
     logo: clubsLogo,
     title: "Clubs",
     completedLogos:[],
-    completed: false
+    completed: false,
+    redeem: false
 }

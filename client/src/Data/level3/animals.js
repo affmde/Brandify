@@ -62,5 +62,6 @@ export const animals= {
     logo: animalsLogo,
     title: "Animals",
     completedLogos: [],
-    completed: false
+    completed: false,
+    redeem: false
 }
