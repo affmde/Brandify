@@ -11,7 +11,7 @@ import router from '../handelRouters';
 
 export const CategoriesPage = (props) => {
     const ref = useRef(null);
-    const { update } = useCountUp({
+    const { start } = useCountUp({
         ref: ref,
         start: props.coins,
         end: props.coins+75,
@@ -36,7 +36,7 @@ export const CategoriesPage = (props) => {
     const handleRedeem = (e, obj, i) => {
         e.target.src=obj.logo;
         document.getElementById(`categ-${i}`).style.display= 'none';
-        update(props.coins+75)
+        start();
         props.setCoins(props.coins+75);
         router.postRedeemCategory(obj, i, level);
         router.coinsReward(75);

@@ -23,7 +23,7 @@ export const GameView = (props) => {
     const [stringConverted, setStringConverted] = useState("")
     const logoNameWithSpace = logo.name.replace('_', " ");
     const countUpRef = useRef(null);
-    const {update} = useCountUp({
+    const {start, update} = useCountUp({
         ref: countUpRef,
         duration: 2,
         start:props.coins,
@@ -101,7 +101,7 @@ export const GameView = (props) => {
             document.getElementById("logoName").style.display= "none";
             document.getElementById("correct-div").style.display="block";
             document.getElementById('confirmed-logo-name').classList.add('transition')
-            update(props.coins+15)
+            start();
         }else if(!won && stringAnswer.length===logo.name.length){
             const answer= document.querySelectorAll(".letter-box");
             answer.forEach(a=>a.style.backgroundColor= "red")
@@ -250,7 +250,7 @@ export const GameView = (props) => {
             setAnswer={setAnswer}
             rand={randomLetters}
             handleShowLetter={handleShowLetter}
-            update={update}
+            start={start}
             />}
             </Row>
         </Container>
