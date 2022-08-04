@@ -1,30 +1,16 @@
 import "./helpsModal.css";
 import { Container, Button, Image } from "react-bootstrap";
+import router from '../handelRouters';
 
 
 export const HelspsModal = (props) => {
     //solution variable used on show word tip
     const solution = props.name.replace("_", " ")
     const nbrToDivide = props.name.includes("_") ? props.name.length-1 : props.name.length;
-    const spendCoins = async (c) =>{
-        const body={
-            coins: c
-        }
-        const requestOptions= {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem("Bearer")}` },
-            body: JSON.stringify(body)
-        }
-        try{
-            await fetch("/users/coins", requestOptions);
-            
-        }catch(err){
-            console.log(err)
-        }
-    }
+    
     const showName = (c) => {
         if(props.coins > 400){
-            spendCoins(c)
+            router.coinsReward(c)
             props.setCoins(props.coins+c)
             props.update(props.coins+c)
             const actualAnswer= props.answer
@@ -43,7 +29,7 @@ export const HelspsModal = (props) => {
     }
     const showLetter = (cost) => {
         if(props.coins > cost){
-            spendCoins(cost)
+            router.coinsReward(cost)
             props.setCoins(props.coins+cost)
             props.update(props.coins+cost)
             const actualAnswer= props.answer
