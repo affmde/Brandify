@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { logosInfo } from "../logosInfo";
 import { TopNav } from "./topNav";
 import box from '../media/images/box.png'
-import { useCountUp } from "react-countup";
+import CountUp, { useCountUp } from "react-countup";
 import { useRef } from "react";
 import router from '../handelRouters';
 
