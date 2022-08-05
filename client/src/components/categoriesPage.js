@@ -4,20 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { logosInfo } from "../logosInfo";
 import { TopNav } from "./topNav";
 import box from '../media/images/box.png'
-import CountUp, { useCountUp } from "react-countup";
-import { useRef } from "react";
 import router from '../handelRouters';
 
 
 export const CategoriesPage = (props) => {
-    const ref = useRef(null);
-    const { start } = useCountUp({
-        ref: ref,
-        start: props.coins,
-        end: props.coins+75,
-        duration: 2,
-        startOnMount: false
-    })
     const navigate= useNavigate();
     if(props.level===null){
         return(
@@ -35,7 +25,6 @@ export const CategoriesPage = (props) => {
     const handleRedeem = (e, obj, i) => {
         e.target.src=obj.logo;
         document.getElementById(`categ-${i}`).style.display= 'none';
-        start();
         props.setCoins(props.coins+75);
         router.postRedeemCategory(obj, i, level);
         router.coinsReward(75);
@@ -54,7 +43,7 @@ export const CategoriesPage = (props) => {
  
     return(
         <>
-        <TopNav title="Categories" page="levels" coins={<div ref={ref}/>}/>
+        <TopNav title="Categories" page="levels" coins={props.coins}/>
         <Container>
             <Row className="justify-content-center categories-div">
                 {categories[0].arrays.map((c, i)=>{
