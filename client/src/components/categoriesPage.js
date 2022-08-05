@@ -2,7 +2,6 @@ import "./categoriesPage.css";
 import { Container, Image, Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { logosInfo } from "../logosInfo";
-import { TopNav } from "./topNav";
 import box from '../media/images/box.png'
 import router from '../handelRouters';
 
@@ -43,7 +42,6 @@ export const CategoriesPage = (props) => {
  
     return(
         <>
-        <TopNav title="Categories" page="levels" coins={props.coins}/>
         <Container>
             <Row className="justify-content-center categories-div">
                 {categories[0].arrays.map((c, i)=>{

@@ -2,8 +2,6 @@ import "./logosPage.css";
 import { Container, Image, Row, ProgressBar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { logosInfo } from "../logosInfo";
-import { TopNav } from "./topNav";
-
 
 export const LogosPage = (props) => {
 
@@ -24,7 +22,6 @@ export const LogosPage = (props) => {
 
     return(
         <>
-            <TopNav title="Logos" page="categories" coins={props.coins}></TopNav>
             <Container>
                 <Row style={{marginTop: '1vh'}}>
                     <ProgressBar variant="sucess" animated now={progress} label={`${progress.toFixed(0)}%`}/>;

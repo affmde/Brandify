@@ -1,11 +1,9 @@
 import "./gameView.css";
 import {Container, Image, Row, Col, Button} from'react-bootstrap';
 import {logosInfo} from '../logosInfo';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import { TopNav } from "./topNav";
 import correctGif from '../media/images/correctGif.gif';
-import CountUp, {useCountUp} from "react-countup"
 import { HelspsModal } from "./helpsModal";
 import router from '../handelRouters';
 
@@ -22,15 +20,7 @@ export const GameView = (props) => {
     const [fullHelp, setFullHelp] = useState(false);
     const [stringConverted, setStringConverted] = useState("")
     const logoNameWithSpace = logo.name.replace('_', " ");
-    const countUpRef = useRef(null);
-    const {start, update} = useCountUp({
-        ref: countUpRef,
-        duration: 2,
-        start:props.coins,
-        end: props.coins+15,
-        startOnMount: false
-    })
-    //let answer=[];
+
     let stringAnswer = "";
     useEffect(()=>{
         const array=[]
@@ -101,7 +91,6 @@ export const GameView = (props) => {
             document.getElementById("logoName").style.display= "none";
             document.getElementById("correct-div").style.display="block";
             document.getElementById('confirmed-logo-name').classList.add('transition')
-            start();
         }else if(!won && stringAnswer.length===logo.name.length){
             const answer= document.querySelectorAll(".letter-box");
             answer.forEach(a=>a.style.backgroundColor= "red")
@@ -212,7 +201,6 @@ export const GameView = (props) => {
 
     return(
         <>
-        <TopNav title={`Level ${level +1}`} page="logos" coins={<p ref={countUpRef}></p>}></TopNav>
         <Image alt="help" src="https://img.icons8.com/dotty/2x/help.png" id="help-button" onClick={() => handleShowHelp(checkAvailableIndex(answer))}></Image>
         <Container>
             <Row className="justify-content-center gameView-container">
@@ -250,7 +238,6 @@ export const GameView = (props) => {
             setAnswer={setAnswer}
             rand={randomLetters}
             handleShowLetter={handleShowLetter}
-            start={start}
             />}
             </Row>
         </Container>

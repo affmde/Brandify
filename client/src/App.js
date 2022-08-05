@@ -8,6 +8,7 @@ import { LevelsPage } from "./components/levels";
 import { LogosPage } from "./components/logosPage";
 import {HomePage} from "./components/homepage";
 import {MessageToast} from './components/messageToast';
+import { TopNav } from './components/topNav';
 
 function App() {
   const [level, setLevel] = useState(0);
@@ -23,6 +24,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {logged && <TopNav level={level} coins={coins}/>}
         <Routes>
           <Route path="/" element={<HomePage setLogged={setLogged} />}></Route>
           {logged && <Route path="/levels" element={<LevelsPage level={level} setLevel={setLevel} category={category} coins={coins} setCoins={setCoins} setLogged={setLogged}/>}></Route>}

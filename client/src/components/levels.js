@@ -3,7 +3,6 @@ import { useState} from 'react';
 import { Button, Container, Row, Col, Image} from "react-bootstrap"
 import {useNavigate} from 'react-router-dom';
 import { logosInfo } from "../logosInfo";
-import { TopNav } from './topNav';
 import { useEffect } from 'react';
 import { ErrorComponent } from './handlingComponents/Error/errorComponent';
 import { LoadingComponent } from './handlingComponents/Loading/loadingComponent';
@@ -532,7 +531,6 @@ export const LevelsPage = (props) => {
 
     return(
         <>
-        <TopNav title="Levels" base="base" coins={props.coins}/>
         <Container>
             <Row className="justify-content-center levels-title">
                 <Col xs="auto"><h1>Choose your level</h1></Col>
