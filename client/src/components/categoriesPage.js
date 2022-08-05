@@ -18,7 +18,6 @@ export const CategoriesPage = (props) => {
         duration: 2,
         startOnMount: false
     })
-
     const navigate= useNavigate();
     if(props.level===null){
         return(

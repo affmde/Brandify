@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './topNav.css';
 
 export const TopNav = (props) => {
+    const coins= props.coins;
+    console.log('coins: ', coins)
     const navigate= useNavigate();
     
     const handleReturn = () => {
@@ -14,7 +16,7 @@ export const TopNav = (props) => {
                 {props.base!=="base" && <Col xs={2} lg={1}><Image alt="return" src="https://img.icons8.com/flat-round/344/thick-long-left-arrow.png" className="return-button" onClick={()=>handleReturn()}></Image></Col>}
                 <Col xs={2} lg={1} className="topNav-text">{props.title}</Col>
                 <Col xs={{offset: 4, span: 1}} lg={{offset: 6, span: 1}}><Image alt="coins" src="https://img.icons8.com/emoji/2x/coin-emoji.png" className='topNav-coin'></Image></Col>
-                <Col xs={2} lg={1} className="topNav-text">{props.coins}</Col>
+                <Col xs={2} lg={1} className="topNav-text">{coins}</Col>
             </Row>
         </Container>
     )
