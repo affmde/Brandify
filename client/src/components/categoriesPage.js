@@ -10,8 +10,7 @@ import router from '../handelRouters';
 
 
 export const CategoriesPage = (props) => {
-    const ref = useRef(<p></p>);
-    console.log('ref: ', ref)
+    const ref = useRef(null);
     const { start } = useCountUp({
         ref: ref,
         start: props.coins,
@@ -55,7 +54,7 @@ export const CategoriesPage = (props) => {
  
     return(
         <>
-        <TopNav title="Categories" page="levels" coins={<p ref={ref}></p>}/>
+        <TopNav title="Categories" page="levels" coins={<div ref={ref}/>}/>
         <Container>
             <Row className="justify-content-center categories-div">
                 {categories[0].arrays.map((c, i)=>{

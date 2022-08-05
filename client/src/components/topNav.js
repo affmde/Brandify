@@ -5,6 +5,7 @@ import './topNav.css';
 export const TopNav = (props) => {
     const coins= props.coins;
     console.log('coins: ', coins)
+    console.log('page: ', window.location.pathname)
     const navigate= useNavigate();
     
     const handleReturn = () => {
