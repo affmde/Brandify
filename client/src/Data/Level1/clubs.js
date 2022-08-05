@@ -5,6 +5,7 @@ import chelsea from "../../media/images/chelsea.png";
 import clubsLogo from "../../media/images/club-symbols.png";
 import arsenal from "../../media/images/arsenal.png";
 import liverpool from "../../media/images/liverpool.png";
+import realMadrid from "../../media/images/realMadrid.png";
 
 const clubsLogos=[
     {
@@ -52,7 +53,7 @@ const clubsLogos=[
     {
         id: 7,
         name: "real_madrid",
-        logoUrl: "https://img.icons8.com/ios/2x/real-madrid.png",
+        logoUrl: realMadrid,
         completed: false
     },
     {

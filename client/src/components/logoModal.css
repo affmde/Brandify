@@ -1,0 +1,19 @@
+#logo-modal-pic{
+    width: 100%;
+}
+
+#logo-modal-name{
+    font-size: 4rem;
+    text-align: center;
+    color: #b48608; 
+    font-family: 'Droid serif', serif; 
+    font-weight: 400; 
+    font-style: italic; 
+    line-height: 44px; 
+    margin: 0 0 12px; 
+    word-wrap: break-word;
+}
+
+.modalLogo .modal-content {
+    background: url("../media/images/background.jpg");
+  }

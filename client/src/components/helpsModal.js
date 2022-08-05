@@ -42,6 +42,7 @@ export const HelspsModal = (props) => {
             }, 3000)
         }
     }
+    
     return(
         <Container>
                 

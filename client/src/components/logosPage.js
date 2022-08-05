@@ -2,9 +2,12 @@ import "./logosPage.css";
 import { Container, Image, Row, ProgressBar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { logosInfo } from "../logosInfo";
+import { LogoModal } from "./logoModal";
+import { useState } from "react";
 
 export const LogosPage = (props) => {
-
+    const [showLogoModal, setShowLogoModal] = useState(false);
+    const [modalProps, setModalProps] = useState({});
     const navigate= useNavigate();
     const level= props.level;
     const category= props.category;
@@ -20,6 +23,12 @@ export const LogosPage = (props) => {
         logosInfo[level][0].arrays[category].completed= true;
     }
 
+    const handleShowModal = (ctg)=>{
+        console.log(ctg)
+        setShowLogoModal(true);
+        setModalProps(ctg)
+    }
+
     return(
         <>
             <Container>
@@ -31,13 +40,18 @@ export const LogosPage = (props) => {
                 {logos.array.map((ctgory, i)=>{
                     return(
                         <div key={i} className="logo-area">
-                            <Image src={ctgory.logoUrl} alt="logo" className="logo-to-choose" onClick={ctgory.completed ? ()=>null : ()=>chooseLogo(ctgory)} />
+                            <Image src={ctgory.logoUrl} alt="logo" className="logo-to-choose" onClick={ctgory.completed ? ()=>handleShowModal(ctgory) : ()=>chooseLogo(ctgory)} />
                             {ctgory.completed && <Image src="https://img.icons8.com/external-flaticons-flat-flat-icons/344/external-correct-press-and-media-flaticons-flat-flat-icons.png" alt="completed" className="logo-completed"></Image>}
                         </div>
                     )
                 })}
                 </div>
                 </Row>
+                <LogoModal 
+                    show={showLogoModal}
+                    onHide={() => setShowLogoModal(false)}
+                    info={modalProps}
+                />
             </Container>
         </>
         )
