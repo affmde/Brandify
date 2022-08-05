@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { ErrorComponent } from './handlingComponents/Error/errorComponent';
 import { LoadingComponent } from './handlingComponents/Loading/loadingComponent';
 import router from '../handelRouters';
-
+import { createParticles } from "./particle";
 
 export const LevelsPage = (props) => {
     const [totalLogos, setTotalLogos] = useState(0);
@@ -463,13 +463,14 @@ export const LevelsPage = (props) => {
         logosInfo[levelIndex][0].arrays[5].completedLogos=capitalsArray;
     }
 
-    const handleRedeem = (i) => {
+    const handleRedeem = (e, i) => {
         document.getElementById(`button-level-${i}`).style.backgroundColor='green';
         logosInfo[i][0].redeem=true;
         setTotalRedeem(totalRedeem+1);
         router.postRedeemLevel(i);
         props.setCoins(props.coins+400)
         router.coinsReward(400)
+        createParticles(e)
     }
 
     const showCorrectButton = (index) => {
@@ -489,7 +490,7 @@ export const LevelsPage = (props) => {
                 )
             }else if(lvl.completed && !lvl.redeem){
                 return(
-                    <Button onClick={()=>handleRedeem(index)} className="levels-button redeem-button" id={`button-level-${index}`} >
+                    <Button onClick={(e)=>handleRedeem(e, index)} className="levels-button redeem-button" id={`button-level-${index}`} >
                         <div className='levels-btn-container'>
                             <div className="levels-button-texts-div">
                                 <p className="level-btn-text">Redeem your prize</p>

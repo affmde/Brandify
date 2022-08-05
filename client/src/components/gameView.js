@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import correctGif from '../media/images/correctGif.gif';
 import { HelspsModal } from "./helpsModal";
 import router from '../handelRouters';
+import {createParticles} from './particle';
 
 export const GameView = (props) => {
     const navigate= useNavigate();
@@ -20,7 +21,6 @@ export const GameView = (props) => {
     const [fullHelp, setFullHelp] = useState(false);
     const [stringConverted, setStringConverted] = useState("")
     const logoNameWithSpace = logo.name.replace('_', " ");
-
     let stringAnswer = "";
     useEffect(()=>{
         const array=[]
@@ -111,7 +111,8 @@ export const GameView = (props) => {
         
     }
 
-    const continueFunction = (coins) =>{
+    const continueFunction = (e, coins) =>{
+        createParticles(e);
         props.setCoins(props.coins+coins);
         router.coinsReward(15);
         addCompletedLogo();
@@ -223,7 +224,7 @@ export const GameView = (props) => {
                 <div className="correct-div-flex">
                     <p id="confirmed-logo-name">{logoNameWithSpace.toUpperCase()}</p>
                     <img alt="correct" src={correctGif} id="correct-gif"></img>
-                    <Button onClick={()=>continueFunction(15)} id="continueBtn">Continue</Button>
+                    <Button onClick={(e)=>continueFunction(e, 15)} id="continueBtn">Continue</Button>
                 </div>
             </div>}
 

@@ -28,9 +28,8 @@ export const TopNav = (props) => {
             }
         }
     }
-    const coins= props.coins;
+
     const navigate= useNavigate();
-    
     const handleReturn = () => {
         navigate(handleInfo().return)
     }

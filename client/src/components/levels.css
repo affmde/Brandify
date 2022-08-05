@@ -70,7 +70,17 @@
     font-size: 1.5rem;
 }
 
-
+.particle{
+  border-radius: 50%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  opacity: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url('../media/images/coin.png');
+}
 @media only screen and (max-width: 992px){
     .levels-button-p{
         font-size: 3rem;

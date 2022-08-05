@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { logosInfo } from "../logosInfo";
 import box from '../media/images/box.png'
 import router from '../handelRouters';
-
+import { createParticles } from "./particle";
 
 export const CategoriesPage = (props) => {
     const navigate= useNavigate();
@@ -28,6 +28,7 @@ export const CategoriesPage = (props) => {
         router.postRedeemCategory(obj, i, level);
         router.coinsReward(75);
         obj.redeem=true;
+        createParticles(e);
     }
 
     const showCorrectImg = (completed, redeem, obj, index)=>{
