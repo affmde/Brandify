@@ -1,4 +1,4 @@
-import { Modal, Image, Button } from "react-bootstrap"
+import { Modal, Image } from "react-bootstrap"
 import './logoModal.css';
 
 export const LogoModal = (props) => {

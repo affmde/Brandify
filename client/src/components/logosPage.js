@@ -24,7 +24,6 @@ export const LogosPage = (props) => {
     }
 
     const handleShowModal = (ctg)=>{
-        console.log(ctg)
         setShowLogoModal(true);
         setModalProps(ctg)
     }
