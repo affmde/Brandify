@@ -21,7 +21,7 @@ const capitalsLogos= [
     },
     {
         id: 3,
-        name: "tunes",
+        name: "tunis",
         logoUrl: "https://img.icons8.com/officel/2x/tunisia.png",
         completed: false
     },

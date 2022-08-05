@@ -42,13 +42,13 @@ const animalsLogos= [
     },
     {
         id: 5,
-        name: "Cocker_spaniel ",
+        name: "Cocker_spaniel",
         logoUrl: cooker,
         completed: false
     },
     {
         id: 6,
-        name: "dalmata",
+        name: "dalmatian",
         logoUrl: dalmata,
         completed: false
     },

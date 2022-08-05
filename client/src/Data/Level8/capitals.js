@@ -39,7 +39,7 @@ const capitalsLogos= [
     },
     {
         id: 6,
-        name: "San José",
+        name: "San_José",
         logoUrl: "https://img.icons8.com/offices/2x/costa-rica.png",
         completed: false
     },

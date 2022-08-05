@@ -9,7 +9,7 @@ const capitalsLogos= [
     },
     {
         id:1,
-        name: "haia",
+        name: "Amsterdam",
         logoUrl:"https://img.icons8.com/officel/2x/netherlands.png",
         completed: false
     },
