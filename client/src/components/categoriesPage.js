@@ -10,7 +10,8 @@ import router from '../handelRouters';
 
 
 export const CategoriesPage = (props) => {
-    const ref = useRef(null);
+    const ref = useRef(<p></p>);
+    console.log('ref: ', ref)
     const { start } = useCountUp({
         ref: ref,
         start: props.coins,
