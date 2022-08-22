@@ -15,7 +15,7 @@ const capitalsLogos= [
     },
     {
         id:2,
-        name: "istambul",
+        name: "ankara",
         logoUrl:"https://img.icons8.com/officel/2x/turkey.png",
         completed: false
     },
